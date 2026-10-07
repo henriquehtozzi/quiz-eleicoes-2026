@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Decisão Brasil 2026 — Guia Cidadão de Alinhamento Eleitoral</title>
+  <meta name="description" content="Descubra com qual projeto de país suas prioridades realmente se alinham através de um teste cego baseado nas diretrizes oficiais registradas no TSE.">
+  <meta name="theme-color" content="#1e3a5f">
+
+  <!-- Metatags para compartilhamento no WhatsApp, Facebook e Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Decisão Brasil 2026 — Guia Cidadão de Alinhamento Eleitoral">
+  <meta property="og:description" content="Faça o teste cego de prioridades: 7 dilemas práticos baseados nas diretrizes oficiais de governo registradas no TSE. Veja seu resultado e compare propostas.">
+  <meta property="og:locale" content="pt_BR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Decisão Brasil 2026 — Guia Cidadão de Alinhamento Eleitoral">
+  <meta name="twitter:description" content="7 dilemas práticos. Opções sem rótulos partidários. Compare suas escolhas com os planos de governo oficiais do TSE.">
+
+  <!-- Tipografia Editorial (Google Fonts com preconnect) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Estilos da Aplicação -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- CABEÇALHO / MASTHEAD INSTITUCIONAL -->
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a href="index.html" class="brand-wrapper" title="Ir para o início do guia">
+        <div class="brand-emblem" aria-hidden="true">✓</div>
+        <div class="brand-text">
+          <h1>Decisão Brasil 2026</h1>
+          <p>Guia Cidadão de Alinhamento Presidencial</p>
+        </div>
+      </a>
+
+      <div class="masthead-meta">
+        <div class="badge-source">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          <span>Diretrizes Oficiais TSE</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ÁREA PRINCIPAL -->
+  <main class="site-content">
+
+    <!-- ====================================================================
+         1. TELA INICIAL: APRESENTAÇÃO E METODOLOGIA
+         ==================================================================== -->
+    <section id="screenWelcome" class="main-card">
+      <div class="welcome-hero">
+        <span class="section-kicker">Eleições Presidenciais 2026</span>
+        <h2 class="hero-title">Descubra qual visão de país realmente combina com as suas prioridades</h2>
+        <p class="hero-lead">
+          Responda a 7 dilemas práticos do dia a dia sobre economia, trabalho, segurança, saúde e meio ambiente. 
+          As alternativas são apresentadas <strong>sem rótulos partidários</strong>, transcritas diretamente das diretrizes de governo registradas no Tribunal Superior Eleitoral (TSE).
+        </p>
+      </div>
+
+      <!-- Pilares Metodológicos -->
+      <div class="methodology-grid">
+        <div class="methodology-item">
+          <span class="methodology-number">01. Teste Cego Imparcial</span>
+          <h3 class="methodology-title">Sem rótulos prévios</h3>
+          <p class="methodology-desc">Você escolhe as medidas com base no que acredita ser melhor para o Brasil, livre da influência da propaganda eleitoral.</p>
+        </div>
+
+        <div class="methodology-item">
+          <span class="methodology-number">02. Rigor Documental</span>
+          <h3 class="methodology-title">Planos oficiais do TSE</h3>
+          <p class="methodology-desc">Cada proposta apresentada no teste possui indicação exata de páginas e trechos dos documentos oficiais protocolados na Justiça Eleitoral.</p>
+        </div>
+
+        <div class="methodology-item">
+          <span class="methodology-number">03. Auditoria Aberta</span>
+          <h3 class="methodology-title">Transparência total</h3>
+          <p class="methodology-desc">No resultado, veja sua porcentagem de afinidade, acesse a análise comparativa de impactos reais e consulte o gabarito completo.</p>
+        </div>
+      </div>
+
+      <div class="welcome-cta">
+        <button id="btnStartQuiz" class="btn-primary" type="button">
+          <span>Iniciar Teste de Prioridades</span>
+          <span aria-hidden="true">→</span>
+        </button>
+        <p class="privacy-notice">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          100% Anônimo. Suas respostas são calculadas localmente e nenhum dado pessoal é armazenado.
+        </p>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         2. TELA DO QUIZ: PASSO A PASSO INTERATIVO
+         ==================================================================== -->
+    <section id="screenQuiz" class="main-card" style="display: none;">
+      <div class="quiz-header">
+        <div class="quiz-stepper-meta">
+          <span id="themeKicker" class="theme-kicker">Tema</span>
+          <span id="stepCounter" class="step-counter">Dilema 1 de 7</span>
+        </div>
+        <div class="progress-track" aria-label="Progresso do quiz">
+          <div id="progressFill" class="progress-indicator"></div>
+        </div>
+      </div>
+
+      <div class="quiz-question-box">
+        <h2 id="questionTitle" class="question-title">Carregando pergunta...</h2>
+        <p id="questionContext" class="question-context">Contexto temático</p>
+      </div>
+
+      <!-- Container das 4 Opções -->
+      <div id="optionsContainer" class="options-group" role="radiogroup" aria-label="Opções de resposta"></div>
+
+      <!-- Navegação Anterior / Próximo -->
+      <div class="quiz-footer-actions">
+        <button id="btnPrevStep" class="btn-secondary" type="button" onclick="prevStep()">
+          <span aria-hidden="true">←</span>
+          <span>Voltar à anterior</span>
+        </button>
+
+        <button id="btnNextStep" class="btn-primary" type="button" onclick="nextStep()" disabled>
+          <span>Confirmar e Avançar</span>
+          <span aria-hidden="true">→</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         3. TELA DE RESULTADOS: AFINIDADE, CONTRAPONTO EDITORIAL & GABARITO
+         ==================================================================== -->
+    <section id="screenResults" class="main-card" style="display: none;">
+      <div class="results-header">
+        <span class="section-kicker">Diagnóstico de Afinidade</span>
+        <h2>Resultado do Seu Alinhamento Eleitoral</h2>
+        <p>
+          Com base nas 7 prioridades que você escolheu espontaneamente, calculamos a afinidade com as diretrizes protocoladas pelas candidaturas presidenciais no TSE:
+        </p>
+      </div>
+
+      <!-- Cartões de Pontuação Lado a Lado -->
+      <div class="affinity-comparison">
+        <!-- Lula (PT) -->
+        <div id="cardLula" class="candidate-score-card lula">
+          <span class="candidate-badge-tag">Partido dos Trabalhadores (PT)</span>
+          <h3 class="candidate-name">Luiz Inácio Lula da Silva</h3>
+          <p class="candidate-party">Candidatura Presidencial Oficial</p>
+          <div class="affinity-meter">
+            <div id="lulaPercent" class="score-number">0%</div>
+            <div class="meter-track">
+              <div id="lulaFill" class="meter-fill-lula" style="width: 0%;"></div>
+            </div>
+            <p id="lulaCount" class="score-details-text">0 de 7 escolhas alinhadas</p>
+          </div>
+        </div>
+
+        <!-- Flávio Bolsonaro (PL) -->
+        <div id="cardFlavio" class="candidate-score-card flavio">
+          <span class="candidate-badge-tag">Partido Liberal (PL)</span>
+          <h3 class="candidate-name">Flávio Bolsonaro</h3>
+          <p class="candidate-party">Candidatura Presidencial Oficial</p>
+          <div class="affinity-meter">
+            <div id="flavioPercent" class="score-number">0%</div>
+            <div class="meter-track">
+              <div id="flavioFill" class="meter-fill-flavio" style="width: 0%;"></div>
+            </div>
+            <p id="flavioCount" class="score-details-text">0 de 7 escolhas alinhadas</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Síntese Editorial e Contraponto dos Modelos de País -->
+      <div class="editorial-synthesis-block">
+        <div class="synthesis-header">
+          <span class="synthesis-tag">Análise Comparativa de Impactos</span>
+          <h3>O Que Suas Escolhas Revelam: Dois Projetos de País em Disputa</h3>
+        </div>
+        <div id="editorialSynthesisContent">
+          <!-- Conteúdo gerado dinamicamente pelo app.js -->
+        </div>
+      </div>
+
+      <!-- Barra de Compartilhamento -->
+      <div class="share-action-bar">
+        <h4>Ajude a disseminar informação eleitoral de qualidade</h4>
+        <p>Compartilhe o teste cego com seus amigos e familiares antes de decidir o voto:</p>
+        <div class="share-buttons-group">
+          <a id="btnShareWhatsapp" class="btn-whatsapp" href="#" target="_blank" rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.06 7.42C8.88 7.42 8.59 7.48 8.35 7.74C8.11 8 7.43 8.64 7.43 9.94C7.43 11.24 8.38 12.49 8.51 12.67C8.64 12.85 10.37 15.52 13.04 16.67C13.67 16.94 14.17 17.11 14.56 17.23C15.2 17.43 15.78 17.41 16.24 17.34C16.76 17.26 17.82 16.7 18.04 16.07C18.27 15.45 18.27 14.92 18.2 14.81C18.13 14.7 17.96 14.63 17.7 14.5C17.44 14.37 16.16 13.74 15.92 13.65C15.68 13.57 15.51 13.52 15.34 13.78C15.17 14.04 14.67 14.63 14.52 14.81C14.37 14.98 14.22 15 13.96 14.87C13.7 14.74 12.86 14.47 11.87 13.58C11.1 12.89 10.58 12.04 10.43 11.78C10.28 11.52 10.41 11.38 10.54 11.25C10.66 11.13 10.81 10.94 10.94 10.79C11.07 10.64 11.11 10.53 11.2 10.36C11.29 10.18 11.25 10.03 11.18 9.9C11.11 9.77 10.6 8.53 10.39 8.01C10.18 7.5 9.97 7.57 9.8 7.57C9.64 7.56 9.47 7.56 9.3 7.56C9.13 7.56 8.95 7.63 9.06 7.42Z"/>
+            </svg>
+            <span>Compartilhar no WhatsApp</span>
+          </a>
+
+          <button id="btnCopyLink" class="btn-secondary" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span>Copiar Link do Quiz</span>
+          </button>
+
+          <button id="btnRestartQuiz" class="btn-secondary" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M23 4v6h-6"></path>
+              <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+            </svg>
+            <span>Refazer o Teste</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- AUDITORIA DOCUMENTAL E EXPLORADOR TSE -->
+      <div class="audit-section">
+        <div class="audit-section-header">
+          <div>
+            <h3>Auditoria Documental & Gabarito TSE</h3>
+            <p>Consulte a comprovação das propostas e as páginas das diretrizes oficiais registradas na Justiça Eleitoral.</p>
+          </div>
+        </div>
+
+        <!-- Abas de Navegação -->
+        <div class="audit-tabs" role="tablist">
+          <button id="tabBtnUser" class="tab-btn active" type="button" role="tab" onclick="switchAuditTab('user-choices')">
+            Minhas 7 Escolhas & Atribuição
+          </button>
+          <button id="tabBtnAll" class="tab-btn" type="button" role="tab" onclick="switchAuditTab('all-tse')">
+            Explorador Completo (Todas as 28 Propostas)
+          </button>
+        </div>
+
+        <!-- Painel 1: As 7 escolhas do eleitor -->
+        <div id="tabPanelUser" role="tabpanel">
+          <div id="userAuditList" class="audit-list"></div>
+        </div>
+
+        <!-- Painel 2: Busca e índice de todas as 28 propostas oficiais -->
+        <div id="tabPanelAll" role="tabpanel" style="display: none;">
+          <div class="explorer-controls">
+            <input 
+              type="text" 
+              class="explorer-search-input" 
+              placeholder="Pesquisar por tema, palavra-chave ou citação (ex: SUS, impostos, salário, presídios)..."
+              oninput="handleExplorerSearch(this)"
+              aria-label="Buscar no índice de propostas do TSE"
+            >
+            <div class="filter-pills">
+              <button class="pill-btn active" type="button" onclick="setExplorerFilter('all', this)">Todas as Propostas</button>
+              <button class="pill-btn" type="button" onclick="setExplorerFilter('Lula', this)">Apenas Lula (PT)</button>
+              <button class="pill-btn" type="button" onclick="setExplorerFilter('Flávio', this)">Apenas Flávio (PL)</button>
+            </div>
+          </div>
+          <div id="tseAllList" class="audit-list"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- RODAPÉ INSTITUCIONAL -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>
+        <strong>Decisão Brasil 2026</strong> — Projeto independente de informação cívica e transparência democrática.
+      </p>
+      <p style="margin-top: 6px;">
+        Conteúdo baseado estritamente nas diretrizes e planos de governo oficiais protocolados no Tribunal Superior Eleitoral (TSE).
+      </p>
+      <div class="footer-links">
+        <a href="https://www.tse.jus.br" target="_blank" rel="noopener noreferrer">Portal Oficial do TSE</a>
+        <span>•</span>
+        <a href="#screenWelcome" onclick="startQuiz()">Reiniciar Teste</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Notificação Toast (feedback ao copiar link) -->
+  <div id="toastNotice" class="toast-notice" role="alert" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="js/quiz-data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

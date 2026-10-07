@@ -1,0 +1,1050 @@
+/* ==========================================================================
+   DECISÃO BRASIL 2026 - ESTILO EDITORIAL E INSTITUCIONAL
+   Design sóbrio, limpo, de alta legibilidade, com estética de jornalismo de dados
+   ========================================================================== */
+
+:root {
+  /* Cores neutras estruturais */
+  --bg-page: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-muted: #f1f5f9;
+  --bg-subtle: #f8fafc;
+  
+  --border-light: #e2e8f0;
+  --border-medium: #cbd5e1;
+  --border-dark: #94a3b8;
+
+  /* Tipografia e texto */
+  --text-main: #0f172a;       /* Slate 900 */
+  --text-body: #334155;       /* Slate 700 */
+  --text-muted: #64748b;      /* Slate 500 */
+  --text-light: #94a3b8;      /* Slate 400 */
+
+  /* Cores institucionais e editoriais */
+  --brand-navy: #1e3a5f;      /* Azul institucional sóbrio */
+  --brand-navy-dark: #0f233a;
+  --brand-accent: #2563eb;
+
+  /* Cores de atribuição eleitoral (Sóbrias, sem excessos) */
+  --lula-red: #991b1b;
+  --lula-bg: #fef2f2;
+  --lula-border: #fecaca;
+  --lula-badge: #7f1d1d;
+
+  --flavio-green: #166534;
+  --flavio-bg: #f0fdf4;
+  --flavio-border: #bbf7d0;
+  --flavio-badge: #14532d;
+
+  /* Efeitos e espaçamentos */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 12px 28px -4px rgba(15, 23, 42, 0.08);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  /* Fontes */
+  --font-serif: 'Lora', 'Merriweather', 'Georgia', serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Reset Geral */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-body);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   MASTHEAD / CABEÇALHO INSTITUCIONAL
+   ========================================================================== */
+.masthead {
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-light);
+  padding: 14px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: var(--shadow-sm);
+}
+
+.masthead-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand-emblem {
+  width: 38px;
+  height: 38px;
+  background-color: var(--brand-navy);
+  color: #ffffff;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.brand-text h1 {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--brand-navy-dark);
+  line-height: 1.2;
+}
+
+.brand-text p {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.masthead-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.badge-source {
+  background: var(--bg-muted);
+  border: 1px solid var(--border-light);
+  color: var(--text-body);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.badge-source svg {
+  width: 14px;
+  height: 14px;
+  color: var(--brand-navy);
+}
+
+/* ==========================================================================
+   CONTAINER PRINCIPAL
+   ========================================================================== */
+.site-content {
+  flex: 1;
+  max-width: 860px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 32px 18px 48px;
+}
+
+/* Estilo unificado para blocos de cartão */
+.main-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 40px 36px;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+/* ==========================================================================
+   TELA INICIAL: BOAS-VINDAS & APRESENTAÇÃO
+   ========================================================================== */
+.welcome-hero {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 36px;
+}
+
+.section-kicker {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--brand-navy);
+  background: #eef4ff;
+  border: 1px solid #dbeafe;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: 32px;
+  line-height: 1.25;
+  color: var(--text-main);
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.hero-lead {
+  font-size: 17px;
+  color: var(--text-body);
+  line-height: 1.6;
+}
+
+/* Pilares metodológicos (Grade 3 colunas) */
+.methodology-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 32px 0 36px;
+  text-align: left;
+}
+
+.methodology-item {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 20px 18px;
+}
+
+.methodology-number {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--brand-navy);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.methodology-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.methodology-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Botões de Ação Principais */
+.btn-primary {
+  background: var(--brand-navy);
+  color: #ffffff;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 15px 34px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(15, 35, 58, 0.2);
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background: var(--brand-navy-dark);
+  transform: translateY(-1px);
+}
+
+.btn-primary:disabled {
+  background: var(--border-medium);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-secondary {
+  background: #ffffff;
+  color: var(--text-body);
+  border: 1px solid var(--border-medium);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 22px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--bg-muted);
+  border-color: var(--border-dark);
+}
+
+.btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.welcome-cta {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.privacy-notice {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* ==========================================================================
+   TELA DO QUIZ: PASSO A PASSO
+   ========================================================================== */
+.quiz-header {
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 20px;
+  margin-bottom: 26px;
+}
+
+.quiz-stepper-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.theme-kicker {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--brand-navy);
+}
+
+.step-counter {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.progress-track {
+  width: 100%;
+  height: 6px;
+  background: var(--border-light);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-indicator {
+  height: 100%;
+  background: var(--brand-navy);
+  width: 14.28%;
+  transition: width 0.3s ease;
+}
+
+.quiz-question-box {
+  margin-bottom: 28px;
+}
+
+.question-title {
+  font-family: var(--font-serif);
+  font-size: 23px;
+  color: var(--text-main);
+  line-height: 1.35;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.question-context {
+  font-size: 14px;
+  color: var(--text-muted);
+  font-style: italic;
+  border-left: 3px solid var(--border-medium);
+  padding-left: 12px;
+  margin-bottom: 20px;
+}
+
+/* Opções de Resposta */
+.options-group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 32px;
+}
+
+.option-card {
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  cursor: pointer;
+  background: #ffffff;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.option-card:hover {
+  border-color: var(--brand-navy);
+  background: #f8fafc;
+  box-shadow: var(--shadow-sm);
+}
+
+.option-card.selected {
+  border-color: var(--brand-navy);
+  border-width: 2px;
+  background: #f0f7ff;
+  padding: 17px 19px; /* Mantém alinhamento com borda de 2px */
+}
+
+.option-badge {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--border-medium);
+  background: var(--bg-muted);
+  color: var(--text-main);
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: all 0.2s ease;
+}
+
+.option-card:hover .option-badge {
+  border-color: var(--brand-navy);
+}
+
+.option-card.selected .option-badge {
+  background: var(--brand-navy);
+  color: #ffffff;
+  border-color: var(--brand-navy);
+}
+
+.option-text {
+  font-size: 15px;
+  color: var(--text-body);
+  line-height: 1.55;
+  flex: 1;
+}
+
+.quiz-footer-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border-light);
+  padding-top: 22px;
+}
+
+/* ==========================================================================
+   TELA DE RESULTADOS & ANÁLISE EDITORIAL
+   ========================================================================== */
+.results-header {
+  text-align: center;
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 24px;
+}
+
+.results-header h2 {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  color: var(--text-main);
+  margin-bottom: 10px;
+}
+
+.results-header p {
+  font-size: 15px;
+  color: var(--text-muted);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* Comparador de Afinidade (Cartões lado a lado) */
+.affinity-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 36px;
+}
+
+.candidate-score-card {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 24px 20px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: var(--shadow-sm);
+}
+
+.candidate-score-card.winner {
+  border-width: 2px;
+}
+
+.candidate-score-card.lula {
+  border-color: var(--lula-border);
+  background: #fffafa;
+}
+
+.candidate-score-card.lula.winner {
+  border-color: var(--lula-red);
+}
+
+.candidate-score-card.flavio {
+  border-color: var(--flavio-border);
+  background: #fafffb;
+}
+
+.candidate-score-card.flavio.winner {
+  border-color: var(--flavio-green);
+}
+
+.candidate-badge-tag {
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.lula .candidate-badge-tag {
+  background: var(--lula-bg);
+  color: var(--lula-badge);
+  border: 1px solid var(--lula-border);
+}
+
+.flavio .candidate-badge-tag {
+  background: var(--flavio-bg);
+  color: var(--flavio-badge);
+  border: 1px solid var(--flavio-border);
+}
+
+.candidate-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.candidate-party {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+}
+
+.affinity-meter {
+  margin-top: auto;
+}
+
+.score-number {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.lula .score-number {
+  color: var(--lula-red);
+}
+
+.flavio .score-number {
+  color: var(--flavio-green);
+}
+
+.meter-track {
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.meter-fill-lula {
+  height: 100%;
+  background: var(--lula-red);
+}
+
+.meter-fill-flavio {
+  height: 100%;
+  background: var(--flavio-green);
+}
+
+.score-details-text {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Síntese Editorial e Contraponto de País */
+.editorial-synthesis-block {
+  background: #fbfcfe;
+  border: 1px solid var(--border-light);
+  border-left: 4px solid var(--brand-navy);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  margin-bottom: 36px;
+}
+
+.synthesis-header {
+  margin-bottom: 18px;
+}
+
+.synthesis-tag {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--brand-navy);
+  letter-spacing: 0.8px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.synthesis-header h3 {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  color: var(--text-main);
+  line-height: 1.3;
+}
+
+.synthesis-intro {
+  font-size: 15px;
+  color: var(--text-body);
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+.editorial-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.editorial-pillar {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 18px 16px;
+}
+
+.editorial-pillar.pillar-lula {
+  border-top: 3px solid var(--lula-red);
+}
+
+.editorial-pillar.pillar-flavio {
+  border-top: 3px solid var(--flavio-green);
+}
+
+.pillar-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pillar-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pillar-bullets li {
+  font-size: 13px;
+  color: var(--text-body);
+  line-height: 1.5;
+}
+
+.pillar-bullets strong {
+  color: var(--text-main);
+}
+
+/* Botões de Ação de Compartilhamento */
+.share-action-bar {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 22px;
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.share-action-bar h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.share-action-bar p {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.share-buttons-group {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-whatsapp {
+  background: #25d366;
+  color: #ffffff;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-whatsapp:hover {
+  background: #1ebd5a;
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   GABARITO AUDITÁVEL & EXPLORADOR TSE
+   ========================================================================== */
+.audit-section {
+  border-top: 1px solid var(--border-light);
+  padding-top: 32px;
+  margin-top: 12px;
+}
+
+.audit-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.audit-section-header h3 {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.audit-section-header p {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* Navegação por Abas (Suas Escolhas vs Todas as Propostas TSE) */
+.audit-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border-light);
+  margin-bottom: 22px;
+  gap: 10px;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  color: var(--text-main);
+}
+
+.tab-btn.active {
+  color: var(--brand-navy);
+  border-bottom-color: var(--brand-navy);
+}
+
+/* Itens de Gabarito Individual */
+.audit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.audit-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+}
+
+.audit-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.audit-theme-tag {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--brand-navy);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.audit-badge {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+
+.audit-badge.badge-lula {
+  background: var(--lula-bg);
+  color: var(--lula-badge);
+  border: 1px solid var(--lula-border);
+}
+
+.audit-badge.badge-flavio {
+  background: var(--flavio-bg);
+  color: var(--flavio-badge);
+  border: 1px solid var(--flavio-border);
+}
+
+.audit-choice-text {
+  font-size: 14px;
+  color: var(--text-main);
+  line-height: 1.5;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.audit-tse-citation {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 12px;
+  color: var(--text-body);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.audit-pages-tag {
+  font-weight: 700;
+  color: var(--brand-navy);
+}
+
+/* Controles de Busca e Filtro do Explorador TSE */
+.explorer-controls {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.explorer-search-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  color: var(--text-main);
+  background: #ffffff;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.explorer-search-input:focus {
+  border-color: var(--brand-navy);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.filter-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pill-btn {
+  background: #ffffff;
+  border: 1px solid var(--border-medium);
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pill-btn:hover {
+  background: var(--bg-muted);
+  color: var(--text-main);
+}
+
+.pill-btn.active {
+  background: var(--brand-navy);
+  color: #ffffff;
+  border-color: var(--brand-navy);
+}
+
+/* Toast de Notificação (ao copiar link) */
+.toast-notice {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--brand-navy-dark);
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: all 0.25s ease;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.toast-notice.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   RODAPÉ EDITORIAL
+   ========================================================================== */
+.site-footer {
+  background: #ffffff;
+  border-top: 1px solid var(--border-light);
+  padding: 32px 20px;
+  margin-top: auto;
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.footer-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.footer-links {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: var(--brand-navy);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE (DISPOSITIVOS MÓVEIS & TABLETS)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .main-card {
+    padding: 26px 18px;
+    border-radius: var(--radius-md);
+  }
+
+  .hero-title {
+    font-size: 24px;
+  }
+
+  .methodology-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .affinity-comparison {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .editorial-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .question-title {
+    font-size: 20px;
+  }
+
+  .masthead-meta {
+    display: none;
+  }
+
+  .quiz-footer-actions {
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+
+  .quiz-footer-actions button {
+    width: 100%;
+  }
+
+  .share-buttons-group {
+    flex-direction: column;
+  }
+
+  .share-buttons-group button, 
+  .share-buttons-group a {
+    width: 100%;
+  }
+}
