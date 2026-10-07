@@ -212,7 +212,7 @@ function renderEditorialSynthesis(lulaPercent, flavioPercent) {
 
   let leadText = '';
   if (isLulaAligned) {
-    leadText = `Você demonstrou forte alinhamento com a <strong>visão popular, de direitos e desenvolvimentista representada por Lula (PT / Coligação Brasil da Esperança)</strong>. Suas respostas indicam clara preferência pelo papel ativo do Estado na garantia da dignidade da classe trabalhadora (como o fim da escala 6x1 e valorização do salário mínimo), fortalecimento do SUS 100% público, comida no prato e soberania nacional.`;
+    leadText = `Você demonstrou forte alinhamento com a <strong>visão popular, de direitos e desenvolvimentista representada por Lula (PT / Coligação Brasil da Esperança)</strong>. Suas respostas indicam clara preferência pelo papel ativo do Estado na garantia da dignidade da classe trabalhadora (como a redução da jornada de trabalho sem corte salarial e valorização do salário mínimo), fortalecimento do SUS 100% público, comida no prato e soberania nacional.`;
   } else {
     leadText = `Suas respostas pontuais indicaram proximidade com propostas de desregulamentação da direita. Contudo, ao analisar as diretrizes oficiais protocoladas no TSE, fica evidente o risco do modelo ultraliberal: corte de ministérios estratégicos, enfraquecimento de direitos trabalhistas e privatização de serviços essenciais como saúde e creches.`;
   }
@@ -413,7 +413,7 @@ function renderTSEExplorer() {
   if (!matchFound) {
     container.innerHTML = `
       <div style="text-align: center; padding: 36px 16px; color: var(--text-muted); font-size: 14px;">
-        Nenhuma proposta encontrada para o termo pesquisado. Tente palavras como "SUS", "salário", "agro", "6x1", "impostos" ou "polícia".
+        Nenhuma proposta encontrada para o termo pesquisado. Tente palavras como "SUS", "salário", "agro", "impostos" ou "polícia".
       </div>
     `;
   }

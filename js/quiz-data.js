@@ -125,12 +125,12 @@ const quizThemes = [
       {
         id: "3B",
         letter: "B",
-        text: "Acabar com a escala de trabalho 6x1, diminuir a jornada semanal sem cortar salário e garantir direitos e previdência para quem trabalha com aplicativos de entrega e transporte.",
+        text: "Diminuir a jornada semanal de trabalho sem cortar salário e garantir direitos e previdência para quem trabalha com aplicativos de entrega e transporte.",
         candidate: "Luiz Inácio Lula da Silva",
         coalition: "PT / Coligação Brasil da Esperança",
         party: "PT",
         pages: "Páginas 18, 19 e 22",
-        tseSummary: "Fim da exaustiva escala 6x1, redução da jornada semanal sem decréscimo remuneratório e inserção de trabalhadores de app na previdência pública."
+        tseSummary: "Redução da jornada semanal de trabalho sem redução de salário e inclusão previdenciária de trabalhadores de aplicativos."
       },
       {
         id: "3C",
@@ -361,7 +361,7 @@ const editorialAnalysis = {
     bulletPoints: [
       {
         heading: "Poder de Compra e Direitos Trabalhistas:",
-        text: "Fim da escala 6x1 e redução da jornada de trabalho sem corte de salário, valorização do salário mínimo acima da inflação todo ano, isenção do Imposto de Renda para rendas mais baixas e direitos previdenciários aos trabalhadores de aplicativo."
+        text: "Redução da jornada semanal de trabalho sem corte de salário, valorização do salário mínimo acima da inflação todo ano, isenção do Imposto de Renda para rendas mais baixas e direitos previdenciários aos trabalhadores de aplicativo."
       },
       {
         heading: "Saúde e Educação como Direitos Universais:",
