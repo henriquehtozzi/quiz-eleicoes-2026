@@ -1,324 +1,352 @@
 /**
- * Banco de Dados de Propostas Oficiais - Eleições 2026
+ * Banco de Dados de Propostas Oficiais - Eleições Presidenciais 2026
  * Fonte: Diretrizes e Planos de Governo protocolados no Tribunal Superior Eleitoral (TSE)
  * 
- * Cada pergunta apresenta 4 propostas reais (2 de Lula / PT e 2 de Flávio Bolsonaro / PL).
- * As opções são apresentadas de forma cega ao eleitor durante o quiz.
+ * - Luiz Inácio Lula da Silva (PT / Coligação Brasil da Esperança)
+ * - Flávio Bolsonaro (PL)
  */
 
 const quizThemes = [
   {
     id: 1,
-    tag: "Economia e Desenvolvimento",
-    title: "1. Dinheiro, Impostos e Economia",
-    question: "Se você fosse presidente, qual seria a sua prioridade principal para cuidar do dinheiro e da economia do país?",
-    context: "O dilema central entre quem defende o investimento público e justiça tributária versus quem defende corte drástico do Estado e privatizações.",
+    tag: "Dinheiro e Economia",
+    title: "1. Dinheiro e Economia",
+    question: "Se você fosse presidente, qual seria a sua prioridade principal para cuidar do dinheiro do país?",
+    context: "O dilema central entre quem defende investimento público, reindustrialização e justiça tributária versus corte do Estado e privatizações.",
     options: [
       {
         id: "1A",
         letter: "A",
         text: "Cobrar imposto de acordo com a renda de cada um: quem ganha menos fica isento do imposto sobre o salário, e os super-ricos pagam mais. Além disso, o governo deve investir dinheiro para gerar novos empregos e fábricas modernas no Brasil.",
         candidate: "Luiz Inácio Lula da Silva",
+        coalition: "PT / Coligação Brasil da Esperança",
         party: "PT",
         pages: "Páginas 10, 19, 42 e 50",
-        tseSummary: "Reforma tributária progressiva, isenção de IR para a classe trabalhadora, tributação de grandes patrimônios e neoindustrialização verde liderada por investimentos públicos estratégicos."
+        tseSummary: "Reforma tributária com justiça fiscal (isenção de IR para a classe trabalhadora e imposto sobre super-ricos) e investimentos públicos na neoindustrialização nacional."
       },
       {
         id: "1B",
         letter: "B",
         text: "Atrair empresas privadas para investir no Brasil. Para isso, vamos diminuir impostos das empresas, facilitar as vendas para fora e passar serviços do governo para a iniciativa privada administrar.",
         candidate: "Flávio Bolsonaro",
+        coalition: "PL",
         party: "PL",
         pages: "Páginas 12, 15, 22 e 28",
-        tseSummary: "Desregulamentação de mercados, desoneração irrestrita de pessoas jurídicas e aceleração de concessões e privatizações de patrimônio e serviços públicos."
+        tseSummary: "Desregulamentação de mercados, desonerações corporativas amplas e privatização/concessão de serviços e estatais estratégicas."
       },
       {
         id: "1C",
         letter: "C",
-        text: "Usar o dinheiro do governo para investir em tecnologia e indústrias limpas, que cuidam da natureza e geram empregos de qualidade no país inteiro.",
+        text: "Usar o dinheiro do governo para investir em tecnologia e indústrias limpas, que cuidam da natureza e geram empregos no país inteiro.",
         candidate: "Luiz Inácio Lula da Silva",
+        coalition: "PT / Coligação Brasil da Esperança",
         party: "PT",
         pages: "Páginas 15, 21 e 43",
-        tseSummary: "Plano de Transição Ecológica com financiamento do BNDES em inovação tecnológica, matriz energética limpa e cadeias produtivas sustentáveis."
+        tseSummary: "Plano de Transição Ecológica com financiamento público de inovação tecnológica, matriz energética limpa e cadeias produtivas verdes."
       },
       {
         id: "1D",
         letter: "D",
         text: "Diminuir o tamanho do governo cortando pelo menos dez ministérios e gastando bem menos dinheiro público com a máquina do Estado.",
         candidate: "Flávio Bolsonaro",
+        coalition: "PL",
         party: "PL",
         pages: "Páginas 7, 10 e 14",
-        tseSummary: "Enxugamento ministerial com extinção de pastas estratégicas, teto rígido de gastos e redução estrutural da capacidade operativa das políticas públicas."
+        tseSummary: "Extinção de pelo menos dez ministérios estratégicos, teto orçamentário rígido e desmonte da capacidade operativa de políticas públicas."
       }
     ]
   },
   {
     id: 2,
-    tag: "Segurança Pública e Cidadania",
-    title: "2. Segurança Pública e Combate ao Crime",
-    question: "Se você fosse presidente, qual seria a sua prioridade principal para proteger a população e garantir paz social?",
-    context: "O confronto entre inteligência policial com oportunidades sociais versus encarceramento em massa e vigilância punitiva.",
+    tag: "Segurança Pública",
+    title: "2. Segurança Pública",
+    question: "Se você fosse presidente, qual seria a sua prioridade principal para proteger a população?",
+    context: "O confronto entre inteligência policial, asfixia do crime organizado e prevenção social versus encarceramento em massa e vigilância punitiva.",
     options: [
       {
         id: "2A",
         letter: "A",
         text: "Aumentar as vagas nas cadeias e colocar câmeras de reconhecimento facial nas ruas de todo o Brasil para pegar procurados pela justiça.",
         candidate: "Flávio Bolsonaro",
+        coalition: "PL",
         party: "PL",
         pages: "Páginas 18, 19 e 24",
-        tseSummary: "Expansão de presídios, policiamento ostensivo e implantação generalizada de monitoramento eletrônico biométrico em espaços públicos."
+        tseSummary: "Expansão da rede penitenciária, policiamento ostensivo e vigilância biométrica de reconhecimento facial em vias públicas."
       },
       {
         id: "2B",
         letter: "B",
-        text: "Investir na inteligência da polícia para tirar o dinheiro das facções criminosas, controlar o uso de armas e integrar o trabalho entre governos municipais, estaduais e federal, aliando repressão qualificada com redução das desigualdades e oportunidades para a juventude.",
+        text: "Investir na inteligência da polícia para tirar o dinheiro das facções criminosas, controlar o uso de armas e integrar o trabalho entre os governos municipais, estaduais e o governo federal, redução das desigualdades e ampliação de oportunidades, especialmente para a juventude.",
         candidate: "Luiz Inácio Lula da Silva",
+        coalition: "PT / Coligação Brasil da Esperança",
         party: "PT",
         pages: "Páginas 30, 31 e 32",
-        tseSummary: "Sistema Único de Segurança Pública (SUSP), asfixia patrimonial e financeira do crime organizado, controle rigoroso de armamentos e prevenção social da violência junto aos jovens."
+        tseSummary: "Sistema Único de Segurança Pública (SUSP), asfixia patrimonial e financeira das facções, controle de armas e oportunidades para a juventude da periferia."
       },
       {
         id: "2C",
         letter: "C",
         text: "Punições bem mais severas: tratar facções criminosas com leis de terrorismo, tirar a redução de pena de quem comete crimes graves e diminuir a idade de responsabilidade penal.",
         candidate: "Flávio Bolsonaro",
+        coalition: "PL",
         party: "PL",
         pages: "Páginas 20, 21 e 25",
-        tseSummary: "Endurecimento da Lei Antiterrorismo, extinção de progressão de regime penal para delitos graves e redução da maioridade penal para 16 anos."
+        tseSummary: "Enquadramento de crimes comuns na Lei Antiterrorismo, extinção de progressão de regime penal e redução da maioridade penal para 16 anos."
       },
       {
         id: "2D",
         letter: "D",
-        text: "Desenvolver tecnologias próprias do Brasil para proteger nossos dados digitais e reforçar a fiscalização integrada nas fronteiras para evitar a entrada de armas pesadas e drogas.",
+        text: "Desenvolver tecnologias próprias do Brasil para proteger nossos dados digitais e reforçar a fiscalização nas fronteiras para evitar a entrada de armas e drogas.",
         candidate: "Luiz Inácio Lula da Silva",
+        coalition: "PT / Coligação Brasil da Esperança",
         party: "PT",
         pages: "Páginas 33, 47 e 48",
-        tseSummary: "Soberania em cibersegurança e comando unificado de vigilância de fronteiras terrestres e marítimas com Forças Armadas e Polícia Federal."
+        tseSummary: "Soberania em cibersegurança e comando integrado de proteção das fronteiras terrestres e marítimas com PF e Forças Armadas."
       }
     ]
   },
   {
     id: 3,
-    tag: "Trabalho, Salário e Renda",
-    title: "3. Trabalho, Salário e Direitos",
-    question: "Se você fosse presidente, qual seria a sua prioridade principal para quem acorda cedo para trabalhar?",
-    context: "A disputa entre valorização da classe trabalhadora e direitos versus desregulamentação trabalhista sem proteção legal.",
+    tag: "Trabalho e Salário",
+    title: "3. Trabalho e Salário",
+    question: "Se você fosse presidente, qual seria a sua prioridade principal para quem trabalha?",
+    context: "A disputa entre valorização da classe trabalhadora, fim da jornada exaustiva e ganho real versus desregulamentação trabalhista sem amparo da CLT.",
     options: [
       {
         id: "3A",
         letter: "A",
-        text: "Garantir direitos trabalhistas para quem atua em plataformas digitais e manter a política de aumento real do salário-mínimo sempre acima da inflação todo ano.",
+        text: "Garantir direitos trabalhistas para quem atua em plataformas digitais e manter o aumento do salário-mínimo sempre acima da inflação.",
         candidate: "Luiz Inácio Lula da Silva",
+        coalition: "PT / Coligação Brasil da Esperança",
         party: "PT",
         pages: "Páginas 11, 18 e 20",
-        tseSummary: "Regulamentação e proteção previdenciária de trabalhadores por aplicativos e garantia constitucional do ganho real do salário mínimo anual."
+        tseSummary: "Proteção previdenciária e trabalhista para entregadores/motoristas de apps e política permanente de reajuste do salário mínimo com ganho real acima da inflação."
       },
       {
         id: "3B",
         letter: "B",
-        text: "Diminuir a jornada semanal de trabalho sem cortar salário (fim da escala extenuante) e garantir direitos e previdência para quem trabalha com aplicativos de entrega e transporte.",
+        text: "Acabar com a escala de trabalho 6x1, diminuir a jornada semanal sem cortar salário e garantir direitos e previdência para quem trabalha com aplicativos de entrega e transporte.",
         candidate: "Luiz Inácio Lula da Silva",
+        coalition: "PT / Coligação Brasil da Esperança",
         party: "PT",
         pages: "Páginas 18, 19 e 22",
-        tseSummary: "Debate e apoio à redução da jornada sem redução de remuneração, fim de escalas exaustivas como 6x1 e inclusão previdenciária de autônomos."
+        tseSummary: "Fim da exaustiva escala 6x1, redução da jornada semanal sem decréscimo remuneratório e inserção de trabalhadores de app na previdência pública."
       },
       {
         id: "3C",
         letter: "C",
         text: "Ajudar as pessoas a conseguirem vagas no mercado privado, incentivando cursos técnicos e encaminhando quem recebe auxílio do governo para vagas formais de trabalho.",
         candidate: "Flávio Bolsonaro",
+        coalition: "PL",
         party: "PL",
         pages: "Páginas 13, 16 e 30",
-        tseSummary: "Parcerias com o Sistema S para capacitação rápida e regras de transição condicionadas para desligamento de beneficiários de programas sociais."
+        tseSummary: "Parcerias de capacitação técnica privada e transição forçada de beneficiários de programas sociais para o mercado."
       },
       {
         id: "3D",
         letter: "D",
         text: "Dar mais liberdade para o trabalhador negociar direto com o patrão sobre como vai trabalhar, sem que as leis rígidas fiquem no caminho.",
         candidate: "Flávio Bolsonaro",
+        coalition: "PL",
         party: "PL",
         pages: "Páginas 11, 14 e 17",
-        tseSummary: "Aprofundamento da flexibilização trabalhista, prevalência irrestrita do negociado individual sobre o legislado e redução das tutelas da CLT."
+        tseSummary: "Aprofundamento da reforma trabalhista, prevalência do acordado individual sobre a CLT e flexibilização irrestrita de jornadas e direitos."
       }
     ]
   },
   {
     id: 4,
-    tag: "Meio Ambiente, Clima e Soberania Alimentar",
-    title: "4. Meio Ambiente, Clima e Comida no Prato",
-    question: "Se você fosse presidente, qual seria a sua prioridade para o meio ambiente, agricultura e produção de alimentos?",
-    context: "A escolha entre combate à fome com estoques públicos e sustentabilidade versus favorecimento exclusivo do grande agronegócio de exportação.",
+    tag: "Meio Ambiente e Comida no Prato",
+    title: "4. Meio Ambiente e Comida no Prato",
+    question: "Se você fosse presidente, qual seria a sua prioridade principal para o meio ambiente e o campo?",
+    context: "A escolha entre soberania alimentar com comida barata e combate ao desmatamento versus favorecimento exclusivo do grande agronegócio de exportação.",
     options: [
       {
         id: "4A",
         letter: "A",
-        text: "Proteger as florestas, zerar o desmatamento ilegal, combater as mudanças do clima e incentivar projetos sustentáveis de produção no campo.",
+        text: "Proteger as florestas, combater as mudanças do clima e incentivar projetos sustentáveis de produção no campo.",
         candidate: "Luiz Inácio Lula da Silva",
+        coalition: "PT / Coligação Brasil da Esperança",
         party: "PT",
         pages: "Páginas 13, 40 e 41",
-        tseSummary: "Desmatamento zero na Amazônia e Cerrado, fortalecimento dos órgãos ambientais (Ibama, ICMBio) e liderança na cúpula climática mundial."
+        tseSummary: "Desmatamento zero, fortalecimento de órgãos de fiscalização (Ibama e ICMBio) e liderança na agenda de preservação climática mundial."
       },
       {
         id: "4B",
         letter: "B",
         text: "Ajudar o produtor rural a renegociar suas dívidas, dar mais crédito e seguro para a lavoura não perder dinheiro com secas ou pragas.",
         candidate: "Flávio Bolsonaro",
+        coalition: "PL",
         party: "PL",
         pages: "Páginas 26, 27 e 29",
-        tseSummary: "Rolagem de passivos do grande agronegócio, securitização de crédito rural e desoneração tributária para insumos agrícolas."
+        tseSummary: "Refinanciamento de passivos do grande agronegócio, securitização de crédito rural e isenções fiscais no campo."
       },
       {
         id: "4C",
         letter: "C",
-        text: "Apoiar a agricultura familiar para produzir comida saudável e barata, distribuir terras improdutivas e fazer o governo comprar alimentos dos pequenos produtores para manter estoques reguladores e controlar os preços da comida.",
+        text: "Apoiar a agricultura familiar para produzir comida barata, distribuir terras e fazer o governo comprar alimentos dos pequenos produtores para guardar e controlar os preços da feira e mercado.",
         candidate: "Luiz Inácio Lula da Silva",
+        coalition: "PT / Coligação Brasil da Esperança",
         party: "PT",
         pages: "Páginas 14, 24 e 25",
-        tseSummary: "Plano Safra da Agricultura Familiar (Pronaf recorde), recomposição dos estoques públicos de alimentos da Conab e combate estrutural à inflação dos alimentos básicos."
+        tseSummary: "Plano Safra da Agricultura Familiar (Pronaf recorde), compras públicas e estoques reguladores da Conab para segurar os preços dos alimentos básicos."
       },
       {
         id: "4D",
         letter: "D",
         text: "Aumentar as obras de irrigação onde falta água, ajudar no registro de terras e premiar produtores rurais que cuidam do meio ambiente.",
         candidate: "Flávio Bolsonaro",
+        coalition: "PL",
         party: "PL",
         pages: "Páginas 27, 28 e 31",
-        tseSummary: "Infraestrutura hídrica para o agronegócio, titulação expressa de terras privadas e mecanismos de pagamento voluntário por serviços ambientais."
+        tseSummary: "Obras hídricas focadas no agronegócio, titulação de propriedades rurais privadas e pagamento voluntário por serviços ambientais."
       }
     ]
   },
   {
     id: 5,
-    tag: "Relações Internacionais e Soberania",
-    title: "5. O Brasil e o Cenário Internacional",
-    question: "Se você fosse presidente, qual postura o Brasil deveria adotar nas relações diplomáticas e comerciais com outros países?",
-    context: "O contraste entre liderança multilateral soberana do Sul Global versus subordinação geopolítica ideológica e acordos pontuais.",
+    tag: "O Brasil e o Mundo",
+    title: "5. O Brasil e o Mundo",
+    question: "Se você fosse presidente, como você conversaria com os outros países?",
+    context: "O contraste entre liderança multilateral soberana do Sul Global e integração regional versus alinhamento automático ideológico a potências externas.",
     options: [
       {
         id: "5A",
         letter: "A",
         text: "Fazer parcerias comerciais pragmáticas e entrar em clubes das maiores economias do mundo para atrair investidores privados de fora.",
         candidate: "Flávio Bolsonaro",
+        coalition: "PL",
         party: "PL",
         pages: "Páginas 33, 34 e 36",
-        tseSummary: "Prioridade na adesão irrestrita à OCDE, desonerações para atração de fundos internacionais e acordos comerciais bilaterais de livre mercado."
+        tseSummary: "Prioridade na adesão irrestrita à OCDE, desregulamentações para fundos internacionais e tratados de livre comércio bilaterais."
       },
       {
         id: "5B",
         letter: "B",
         text: "Unir forças com países vizinhos da América do Sul e nações em desenvolvimento para defender o meio ambiente e dar mais força ao Brasil em decisões mundiais.",
         candidate: "Luiz Inácio Lula da Silva",
+        coalition: "PT / Coligação Brasil da Esperança",
         party: "PT",
         pages: "Páginas 44, 45 e 46",
-        tseSummary: "Integração regional sul-americana (Mercosul, Unasul), protagonismo no bloco BRICS ampliado e liderança nas negociações climáticas e de preservação da Amazônia."
+        tseSummary: "Integração sul-americana (Mercosul, Unasul), protagonismo no bloco BRICS ampliado e liderança multilateral na governança ambiental e climática."
       },
       {
         id: "5C",
         letter: "C",
-        text: "Mudar as regras de organizações internacionais para que países em desenvolvimento tenham a mesma voz e poder de decisão que os países mais ricos.",
+        text: "Mudar as regras de organizações internacionais para que países em desenvolvimento tenham a mesma voz e decisão que os países mais ricos.",
         candidate: "Luiz Inácio Lula da Silva",
+        coalition: "PT / Coligação Brasil da Esperança",
         party: "PT",
         pages: "Páginas 45 e 46",
-        tseSummary: "Reforma urgente da governança global (Conselho de Segurança da ONU, FMI, Banco Mundial) para superar o protecionismo e a assimetria do Norte desenvolvido."
+        tseSummary: "Reforma urgente da governança global (Conselho de Segurança da ONU, OMC e FMI) contra a assimetria e o protecionismo das nações ricas."
       },
       {
         id: "5D",
         letter: "D",
         text: "Fazer aliança direta e prioritária com países parceiros tradicionais, como Estados Unidos e Israel, buscando vender nossos produtos.",
         candidate: "Flávio Bolsonaro",
+        coalition: "PL",
         party: "PL",
         pages: "Páginas 34, 35 e 37",
-        tseSummary: "Alinhamento geopolítico preferencial ao eixo Washington-Tel Aviv com abertura comercial preferencial e acordos bilaterais de segurança e defesa."
+        tseSummary: "Alinhamento geopolítico automático ao eixo Estados Unidos-Israel, com acordos bilaterais de segurança e livre abertura de mercados."
       }
     ]
   },
   {
     id: 6,
-    tag: "Saúde, Educação e Proteção Social",
-    title: "6. Saúde, Educação e Cuidado com as Pessoas",
-    question: "Se você fosse presidente, qual seria a sua prioridade principal para a saúde pública, serviços sociais e educação?",
-    context: "O embate entre fortalecimento do SUS 100% público e gratuito com programas sociais versus privatização com vouchers e parcerias com o setor privado.",
+    tag: "Saúde e Cuidado com as Pessoas",
+    title: "6. Saúde e Cuidado com as Pessoas",
+    question: "Se você fosse presidente, qual seria a sua prioridade principal para a saúde, os serviços sociais e bem-estar?",
+    context: "O embate entre fortalecimento do SUS 100% público e gratuito com proteção social versus terceirização, vouchers e privatização da saúde.",
     options: [
       {
         id: "6A",
         letter: "A",
         text: "Regular o uso das redes sociais para proteger crianças e jovens na internet, reforçar os postos de saúde do bairro e o atendimento em casa para os idosos, e reforçar as leis de proteção de animais contra maus-tratos.",
         candidate: "Luiz Inácio Lula da Silva",
+        coalition: "PT / Coligação Brasil da Esperança",
         party: "PT",
         pages: "Páginas 28, 35, 36 e 49",
-        tseSummary: "Estratégia Nacional de Saúde Mental e Saúde Digital, proteção infantojuvenil em telas, ampliação da Estratégia Saúde da Família e políticas de bem-estar animal."
+        tseSummary: "Proteção da saúde mental e infantojuvenil em ambientes digitais, ampliação da Saúde da Família nos bairros e política de bem-estar animal."
       },
       {
         id: "6B",
         letter: "B",
         text: "Organizar a saúde com registros no CPF, criar centros de atendimento à mulher e proibir que beneficiários de auxílios usem esse dinheiro em apostas no celular.",
         candidate: "Flávio Bolsonaro",
+        coalition: "PL",
         party: "PL",
         pages: "Páginas 8, 22 e 23",
-        tseSummary: "Digitalização de prontuários associados ao número de CPF, núcleos especializados de atendimento feminino e bloqueio financeiro de jogos eletrônicos (bets) no Bolsa Família."
+        tseSummary: "Digitalização e integração do cadastro de saúde ao CPF, núcleos de saúde feminina e bloqueio do Bolsa Família para apostas digitais (bets)."
       },
       {
         id: "6C",
         letter: "C",
-        text: "Fortalecer a rede de saúde pública do SUS, garantir remédios de graça na Farmácia Popular, moradia digna pelo Minha Casa Minha Vida e apoiar financeiramente estudantes do ensino médio para não largarem a escola (programa Pé-de-Meia).",
+        text: "Fortalecer a rede de saúde pública, garantir remédios de graça na farmácia popular, moradia digna e apoiar financeiramente estudantes para não largarem a escola.",
         candidate: "Luiz Inácio Lula da Silva",
+        coalition: "PT / Coligação Brasil da Esperança",
         party: "PT",
         pages: "Páginas 26, 27, 34 e 37",
-        tseSummary: "SUS fortalecido e integralmente estatal, ampliação maciça da gratuidade da Farmácia Popular, subsídio habitacional pelo Minha Casa Minha Vida e permanência escolar via Poupança Pé-de-Meia."
+        tseSummary: "SUS fortalecido e 100% público, gratuidade total da Farmácia Popular, Minha Casa Minha Vida ampliado e permanência escolar com o programa Pé-de-Meia."
       },
       {
         id: "6D",
         letter: "D",
-        text: "Usar hospitais e clínicas privadas em parceria com o SUS para zerar as filas de exames e consultas, e dar cupons (vouchers) para colocar crianças em creches de bairros.",
+        text: "Usar hospitais e clínicas privadas em parceria com o SUS para zerar as filas de exames e consultas, e dar cupons para colocar crianças em creches de bairros.",
         candidate: "Flávio Bolsonaro",
+        coalition: "PL",
         party: "PL",
         pages: "Páginas 9, 21 e 24",
-        tseSummary: "Contratação direta da rede suplementar privada com verbas públicas para procedimentos eletivos e sistema de vouchers educacionais na primeira infância."
+        tseSummary: "Repasse de recursos públicos para contratação da rede privada de saúde (vouchers/parcerias) e modelo de cupons privados para vagas em creches."
       }
     ]
   },
   {
     id: 7,
-    tag: "Instituições, Democracia e Poderes",
-    title: "7. Relação entre os Poderes e Democracia",
-    question: "Se você fosse presidente, qual seria a sua prioridade na relação do Executivo com o Congresso Nacional e o Poder Judiciário?",
-    context: "A defesa das garantias democráticas e harmonia institucional versus ofensivas de controle e desestabilização dos tribunais.",
+    tag: "Relação com os Outros Poderes",
+    title: "7. Relação com os Outros Poderes (Judiciário e Legislativo)",
+    question: "Se você fosse presidente, qual seria a sua prioridade na relação do Poder Executivo com o Congresso Nacional e o Judiciário?",
+    context: "A defesa da estabilidade democrática, separação de poderes e combate ao orçamento secreto versus medidas de controle e retaliação aos tribunais.",
     options: [
       {
         id: "7A",
         letter: "A",
-        text: "Conversar e negociar com o Congresso de forma transparente para decidir onde investir o dinheiro público, respeitando a autonomia dos juízes e da Justiça sem qualquer tipo de interferência ou ameaça do governo.",
+        text: "Conversar e negociar com o Congresso de forma transparente para decidir onde investir o dinheiro público, respeitando a autonomia dos juízes e da Justiça sem qualquer tipo de interferência do governo.",
         candidate: "Luiz Inácio Lula da Silva",
+        coalition: "PT / Coligação Brasil da Esperança",
         party: "PT",
         pages: "Páginas 8, 21 e 82",
-        tseSummary: "Coalizão republicana com transparência orçamentária, diálogo institucional sem coerção e respeito estrito à separação de poderes."
+        tseSummary: "Diálogo institucional republicano, transparência no orçamento público e preservação estrita da harmonia e independência dos poderes."
       },
       {
         id: "7B",
         letter: "B",
         text: "Mudar as regras da Justiça para limitar decisões individuais de ministros do STF, proibir que ex-ministros do governo virem juízes do tribunal imediatamente e proibir parente de magistrado de atuar nos mesmos processos.",
         candidate: "Flávio Bolsonaro",
+        coalition: "PL",
         party: "PL",
         pages: "Páginas 38, 39 e 41",
-        tseSummary: "Restrição de decisões monocráticas no Supremo Tribunal Federal, criação de mandatos com quarentena rigorosa e novas vedações de nepotismo no Judiciário."
+        tseSummary: "Restrição de decisões monocráticas no STF, imposição de quarentena a ex-ministros e combate a impedimentos por parentesco no Judiciário."
       },
       {
         id: "7C",
         letter: "C",
-        text: "Fortalecer a democracia participativa, combater o orçamento secreto prestando contas de cada centavo aprovado pelos deputados e proteger os tribunais e a Constituição contra ataques e tentativas de golpe ou punição política.",
+        text: "Fortalecer a democracia, prestar contas de cada centavo gasto aprovado pelos deputados e proteger os tribunais contra ataques ou tentativas de punição política.",
         candidate: "Luiz Inácio Lula da Silva",
+        coalition: "PT / Coligação Brasil da Esperança",
         party: "PT",
         pages: "Páginas 21, 22 e 83",
-        tseSummary: "Defesa irrestrita do Estado Democrático de Direito, extinção de emendas secretas, ampliação da participação popular em conferências e defesa da Carta Magna."
+        tseSummary: "Defesa intransigente do Estado Democrático de Direito, combate ao orçamento secreto e proteção das instituições judiciais contra investidas golpistas."
       },
       {
         id: "7D",
         letter: "D",
-        text: "Fazer uma reforma para acabar com a reeleição de presidente, governadores e prefeitos, além de mudar as leis no Congresso para punir com rigor abusos de autoridade no sistema de Justiça.",
+        text: "Fazer uma reforma para acabar com a reeleição de presidente, governadores e prefeitos, além de mudar as leis no Congresso para punir abusos de autoridade no sistema de Justiça.",
         candidate: "Flávio Bolsonaro",
+        coalition: "PL",
         party: "PL",
         pages: "Páginas 40, 42 e 45",
-        tseSummary: "Proposta de Emenda à Constituição extinguindo a reeleição no Poder Executivo e recrudescimento da Lei de Abuso de Autoridade contra magistrados e promotores."
+        tseSummary: "Proposta de emenda constitucional para extinguir a reeleição no Executivo e ampliação de sanções da Lei de Abuso de Autoridade contra membros do Judiciário e MP."
       }
     ]
   }
@@ -332,8 +360,8 @@ const editorialAnalysis = {
     summary: "Suas escolhas priorizam um Brasil onde o Estado é o garantidor de direitos fundamentais, motor da distribuição de renda e indutor da economia.",
     bulletPoints: [
       {
-        heading: "Poder de Compra e Trabalho Digno:",
-        text: "Valorização contínua do salário mínimo acima da inflação todo ano, isenção do Imposto de Renda para rendas mais baixas, tributação dos super-ricos e proteção aos trabalhadores de aplicativos."
+        heading: "Poder de Compra e Direitos Trabalhistas:",
+        text: "Fim da escala 6x1 e redução da jornada de trabalho sem corte de salário, valorização do salário mínimo acima da inflação todo ano, isenção do Imposto de Renda para rendas mais baixas e direitos previdenciários aos trabalhadores de aplicativo."
       },
       {
         heading: "Saúde e Educação como Direitos Universais:",
@@ -345,7 +373,7 @@ const editorialAnalysis = {
       },
       {
         heading: "Transição Ecológica e Liderança Global:",
-        text: "Combate ao desmatamento com autoridade ambiental recomposta e liderança diplomática soberana junto aos países do Sul Global e fóruns climáticos internacionais."
+        text: "Combate rigoroso ao desmatamento com autoridade ambiental recomposta e liderança diplomática soberana junto aos países do Sul Global e fóruns climáticos internacionais."
       }
     ]
   },
@@ -356,7 +384,7 @@ const editorialAnalysis = {
     bulletPoints: [
       {
         heading: "Desregulamentação e Precarização:",
-        text: "Flexibilização das normas trabalhistas ('negociado sobre legislado' sem garantias legais), desonerações sem contrapartida social e corte de até dez ministérios estratégicos."
+        text: "Flexibilização das normas trabalhistas ('negociado sobre legislado' sem garantias legais), desonerações sem contrapartida social e corte de pelo menos dez ministérios estratégicos."
       },
       {
         heading: "Vouchers e Privatização dos Serviços Básicos:",
@@ -367,7 +395,7 @@ const editorialAnalysis = {
         text: "Foco exclusivo em securitização de dívidas e crédito para grandes produtores rurais de commodities, sem foco em agricultura familiar e sem estoques reguladores de preços de alimentos."
       },
       {
-        heading: "Enfraquecimento Institucional e Segurança Punitiva:",
+        heading: "Enfraquecimento Institucional e Punitivismo:",
         text: "Foco exclusivo em encarceramento em massa e vigilância, alinhamento ideológico automático a potências externas e iniciativas de enquadramento do Poder Judiciário."
       }
     ]

@@ -1,6 +1,7 @@
 /**
  * Decisão Brasil 2026 - Lógica da Aplicação
- * Gerenciamento de fluxo, cálculo de afinidade, renderização editorial e busca no TSE.
+ * Gerenciamento de fluxo, cálculo de afinidade, renderização editorial,
+ * auditoria documental, busca no TSE e compartilhamento via Web Share e WhatsApp.
  */
 
 // Estado da Aplicação
@@ -23,7 +24,7 @@ function initApp() {
     btnStart.addEventListener('click', startQuiz);
   }
 
-  // Atalhos de teclado acessíveis (1-4 ou A-D para responder)
+  // Atalhos de teclado acessíveis (1-4 ou A-D para responder, Enter para avançar)
   document.addEventListener('keydown', handleKeyboardShortcuts);
 }
 
@@ -56,16 +57,24 @@ function renderStep(stepIndex) {
   const progressPercent = Math.round(((stepIndex + 1) / totalSteps) * 100);
 
   // Atualiza indicadores de progresso
-  document.getElementById('stepCounter').textContent = `Dilema ${stepIndex + 1} de ${totalSteps}`;
-  document.getElementById('themeKicker').textContent = theme.tag;
-  document.getElementById('progressFill').style.width = `${progressPercent}%`;
+  const stepCounterEl = document.getElementById('stepCounter');
+  const themeKickerEl = document.getElementById('themeKicker');
+  const progressFillEl = document.getElementById('progressFill');
 
-  // Atualiza enunciado
-  document.getElementById('questionTitle').textContent = theme.question;
-  document.getElementById('questionContext').textContent = theme.context;
+  if (stepCounterEl) stepCounterEl.textContent = `Dilema ${stepIndex + 1} de ${totalSteps}`;
+  if (themeKickerEl) themeKickerEl.textContent = theme.tag;
+  if (progressFillEl) progressFillEl.style.width = `${progressPercent}%`;
+
+  // Atualiza enunciado e contexto
+  const questionTitleEl = document.getElementById('questionTitle');
+  const questionContextEl = document.getElementById('questionContext');
+
+  if (questionTitleEl) questionTitleEl.textContent = theme.question;
+  if (questionContextEl) questionContextEl.textContent = theme.context;
 
   // Renderiza opções
   const optionsContainer = document.getElementById('optionsContainer');
+  if (!optionsContainer) return;
   optionsContainer.innerHTML = '';
 
   const currentSelection = appState.userAnswers[theme.id];
@@ -98,13 +107,14 @@ function renderStep(stepIndex) {
   const btnPrev = document.getElementById('btnPrevStep');
   const btnNext = document.getElementById('btnNextStep');
 
-  btnPrev.disabled = (stepIndex === 0);
-  btnNext.disabled = !currentSelection;
-
-  if (stepIndex === totalSteps - 1) {
-    btnNext.innerHTML = `Ver Meu Resultado & Análise <span>→</span>`;
-  } else {
-    btnNext.innerHTML = `Confirmar e Avançar <span>→</span>`;
+  if (btnPrev) btnPrev.disabled = (stepIndex === 0);
+  if (btnNext) {
+    btnNext.disabled = !currentSelection;
+    if (stepIndex === totalSteps - 1) {
+      btnNext.innerHTML = `Ver Meu Resultado & Análise <span>→</span>`;
+    } else {
+      btnNext.innerHTML = `Confirmar e Avançar <span>→</span>`;
+    }
   }
 }
 
@@ -171,19 +181,19 @@ function renderResults(lulaPercent, flavioPercent, lulaCount, flavioCount, total
   document.getElementById('lulaFill').style.width = `${lulaPercent}%`;
   document.getElementById('flavioFill').style.width = `${flavioPercent}%`;
 
-  document.getElementById('lulaCount').textContent = `${lulaCount} de ${total} escolhas`;
-  document.getElementById('flavioCount').textContent = `${flavioCount} de ${total} escolhas`;
+  document.getElementById('lulaCount').textContent = `${lulaCount} de ${total} escolhas alinhadas`;
+  document.getElementById('flavioCount').textContent = `${flavioCount} de ${total} escolhas alinhadas`;
 
   const lulaCard = document.getElementById('cardLula');
   const flavioCard = document.getElementById('cardFlavio');
 
-  lulaCard.classList.toggle('winner', lulaPercent >= flavioPercent);
-  flavioCard.classList.toggle('winner', flavioPercent > lulaPercent);
+  if (lulaCard) lulaCard.classList.toggle('winner', lulaPercent >= flavioPercent);
+  if (flavioCard) flavioCard.classList.toggle('winner', flavioPercent > lulaPercent);
 
   // Renderiza Síntese Editorial personalizada
   renderEditorialSynthesis(lulaPercent, flavioPercent);
 
-  // Configura Botões de Compartilhamento
+  // Configura Botões de Compartilhamento (WhatsApp e Web Share API)
   setupShareButtons(lulaPercent, flavioPercent);
 
   // Renderiza a auditoria das escolhas do eleitor
@@ -202,9 +212,9 @@ function renderEditorialSynthesis(lulaPercent, flavioPercent) {
 
   let leadText = '';
   if (isLulaAligned) {
-    leadText = `Você demonstrou forte alinhamento com a <strong>visão popular e desenvolvimentista representada por Lula (PT)</strong>. Suas prioridades convergem para o papel insubstituível do Estado em garantir direitos sociais, fortalecer o poder de compra da maioria trabalhadora e impulsionar a infraestrutura e a transição ecológica do país.`;
+    leadText = `Você demonstrou forte alinhamento com a <strong>visão popular, de direitos e desenvolvimentista representada por Lula (PT / Coligação Brasil da Esperança)</strong>. Suas respostas indicam clara preferência pelo papel ativo do Estado na garantia da dignidade da classe trabalhadora (como o fim da escala 6x1 e valorização do salário mínimo), fortalecimento do SUS 100% público, comida no prato e soberania nacional.`;
   } else {
-    leadText = `Suas respostas indicaram maior proximidade com proposições de corte de gastos e desregulamentação da direita. Contudo, a análise pormenorizada dos planos protocolados no TSE revela um contraponto crítico crucial entre os modelos de país em disputa.`;
+    leadText = `Suas respostas pontuais indicaram proximidade com propostas de desregulamentação da direita. Contudo, ao analisar as diretrizes oficiais protocoladas no TSE, fica evidente o risco do modelo ultraliberal: corte de ministérios estratégicos, enfraquecimento de direitos trabalhistas e privatização de serviços essenciais como saúde e creches.`;
   }
 
   container.innerHTML = `
@@ -244,28 +254,49 @@ function setupShareButtons(lulaPercent, flavioPercent) {
   
   let shareText = '';
   if (lulaPercent >= 50) {
-    shareText = `Fiz o Teste Cego de Prioridades Eleitorais 2026 com base nos planos oficiais do TSE e meu alinhamento deu ${lulaPercent}% com o projeto de Lula! Compare suas prioridades sem rótulos partidários: ${currentUrl}`;
+    shareText = `Fiz o Teste Cego de Prioridades Eleitorais 2026 baseado nos planos oficiais do TSE e meu alinhamento deu ${lulaPercent}% com Lula! Compare suas prioridades sem rótulos partidários: ${currentUrl}`;
   } else {
     shareText = `Fiz o Teste Cego de Prioridades Eleitorais 2026 baseado nos dados oficiais do TSE. Descubra com qual proposta de país suas escolhas reais se alinham: ${currentUrl}`;
   }
 
+  // Compartilhamento direto no WhatsApp
   const whatsappBtn = document.getElementById('btnShareWhatsapp');
   if (whatsappBtn) {
     whatsappBtn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
   }
 
+  // Compartilhamento Nativo no Celular (Web Share API - iOS / Android)
+  const nativeShareBtn = document.getElementById('btnNativeShare');
+  if (nativeShareBtn) {
+    nativeShareBtn.onclick = () => {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Decisão Brasil 2026 — Alinhamento Eleitoral',
+          text: shareText,
+          url: currentUrl
+        }).catch(() => {});
+      } else {
+        // Fallback: copia o link
+        navigator.clipboard.writeText(shareText).then(() => {
+          showToast('Resultado e link copiados para a área de transferência!');
+        });
+      }
+    };
+  }
+
+  // Copiar link simples
   const copyBtn = document.getElementById('btnCopyLink');
   if (copyBtn) {
     copyBtn.onclick = () => {
       navigator.clipboard.writeText(currentUrl).then(() => {
         showToast('Link do Quiz copiado com sucesso!');
       }).catch(() => {
-        // Fallback
         showToast('Link: ' + currentUrl);
       });
     };
   }
 
+  // Reiniciar quiz
   const restartBtn = document.getElementById('btnRestartQuiz');
   if (restartBtn) {
     restartBtn.onclick = startQuiz;
@@ -287,16 +318,20 @@ function renderUserAudit() {
     const card = document.createElement('div');
     card.className = 'audit-card';
 
+    const sourcePlanLabel = isLula
+      ? `Plano de Governo (PT / Coligação Brasil da Esperança)`
+      : `Plano de Governo (PL)`;
+
     card.innerHTML = `
       <div class="audit-card-head">
         <span class="audit-theme-tag">${theme.title}</span>
         <span class="audit-badge ${isLula ? 'badge-lula' : 'badge-flavio'}">
-          ${choice.candidate} (${choice.party})
+          ${choice.candidate} (${choice.coalition})
         </span>
       </div>
       <div class="audit-choice-text">"${choice.text}"</div>
       <div class="audit-tse-citation">
-        <span class="audit-pages-tag">📍 Plano TSE: ${choice.pages}</span>
+        <span class="audit-pages-tag">📍 ${sourcePlanLabel}: ${choice.pages}</span>
         <span>•</span>
         <span>${choice.tseSummary}</span>
       </div>
@@ -341,17 +376,21 @@ function renderTSEExplorer() {
       let optionsHtml = '';
       matchingOptions.forEach(opt => {
         const isLula = opt.party === 'PT';
+        const planLabel = isLula 
+          ? 'Plano de Governo (PT / Coligação Brasil da Esperança)' 
+          : 'Plano de Governo (PL)';
+
         optionsHtml += `
           <div style="border-top: 1px solid var(--border-light); padding: 14px 0 6px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; flex-wrap: wrap; gap: 6px;">
               <strong style="font-size: 13px; color: var(--text-main);">Opção ${opt.letter}</strong>
               <span class="audit-badge ${isLula ? 'badge-lula' : 'badge-flavio'}">
-                ${opt.candidate} (${opt.party})
+                ${opt.candidate} (${opt.coalition})
               </span>
             </div>
             <p style="font-size: 14px; color: var(--text-body); margin-bottom: 8px;">"${opt.text}"</p>
             <div class="audit-tse-citation">
-              <span class="audit-pages-tag">📍 ${opt.pages}</span>
+              <span class="audit-pages-tag">📍 ${planLabel}: ${opt.pages}</span>
               <span>•</span>
               <span>${opt.tseSummary}</span>
             </div>
@@ -374,7 +413,7 @@ function renderTSEExplorer() {
   if (!matchFound) {
     container.innerHTML = `
       <div style="text-align: center; padding: 36px 16px; color: var(--text-muted); font-size: 14px;">
-        Nenhuma proposta encontrada para o termo pesquisado. Tente palavras como "SUS", "salário", "agro", "impostos" ou "polícia".
+        Nenhuma proposta encontrada para o termo pesquisado. Tente palavras como "SUS", "salário", "agro", "6x1", "impostos" ou "polícia".
       </div>
     `;
   }
@@ -390,15 +429,15 @@ function switchAuditTab(tabId) {
   const panelAll = document.getElementById('tabPanelAll');
 
   if (tabId === 'user-choices') {
-    btnUser.classList.add('active');
-    btnAll.classList.remove('active');
-    panelUser.style.display = 'block';
-    panelAll.style.display = 'none';
+    if (btnUser) btnUser.classList.add('active');
+    if (btnAll) btnAll.classList.remove('active');
+    if (panelUser) panelUser.style.display = 'block';
+    if (panelAll) panelAll.style.display = 'none';
   } else {
-    btnUser.classList.remove('active');
-    btnAll.classList.add('active');
-    panelUser.style.display = 'none';
-    panelAll.style.display = 'block';
+    if (btnUser) btnUser.classList.remove('active');
+    if (btnAll) btnAll.classList.add('active');
+    if (panelUser) panelUser.style.display = 'none';
+    if (panelAll) panelAll.style.display = 'block';
     renderTSEExplorer();
   }
 }
