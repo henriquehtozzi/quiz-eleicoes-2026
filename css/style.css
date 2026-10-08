@@ -1,29 +1,38 @@
 /* ==========================================================================
-   DECISÃO BRASIL 2026 - ESTILO EDITORIAL E INSTITUCIONAL
-   Design sóbrio, limpo, de alta legibilidade, com estética de jornalismo de dados
+   DECISÃO BRASIL - PALETA "AUTODESCOBERTA POLÍTICA"
+   Roxo Principal (#4A154B), Violeta Suave (#A389D4), Charcoal Purple (#1E1A24),
+   Fundo Limpo (#F9F8FC) e Amber Gold (#FFC72C)
    ========================================================================== */
 
 :root {
-  /* Cores neutras estruturais */
-  --bg-page: #f8fafc;
+  /* Cores da Paleta "Autodescoberta Política" */
+  --color-deep-violet: #4A154B;      /* Roxo Principal: Identidade visual, logomarca e títulos */
+  --color-lavender-tint: #A389D4;    /* Violeta Suave: Destaques secundários, ícones, barra de progresso */
+  --color-charcoal-purple: #1E1A24;  /* Texto / Contraste Escuro: Textos longos e enunciados */
+  --color-soft-offwhite: #F9F8FC;    /* Fundo Limpo: Fundo principal da tela */
+  --color-amber-gold: #FFC72C;       /* Ponto de Interesse / Clique: Botões de ação principais */
+  --color-amber-gold-hover: #F2BA1B; /* Hover dourado com contraste impecável */
+
+  /* Cores estruturais adaptadas */
+  --bg-page: var(--color-soft-offwhite);
   --bg-card: #ffffff;
-  --bg-muted: #f1f5f9;
-  --bg-subtle: #f8fafc;
+  --bg-muted: #F2EEF9;
+  --bg-subtle: #FAF8FD;
   
-  --border-light: #e2e8f0;
-  --border-medium: #cbd5e1;
-  --border-dark: #94a3b8;
+  --border-light: #EBE5F5;
+  --border-medium: #D7CCE8;
+  --border-dark: var(--color-lavender-tint);
 
   /* Tipografia e texto */
-  --text-main: #0f172a;       /* Slate 900 */
-  --text-body: #334155;       /* Slate 700 */
-  --text-muted: #64748b;      /* Slate 500 */
-  --text-light: #94a3b8;      /* Slate 400 */
+  --text-main: var(--color-charcoal-purple);
+  --text-body: #322B3D;
+  --text-muted: #6B617B;
+  --text-light: #9B91AB;
 
   /* Cores institucionais e editoriais */
-  --brand-navy: #1e3a5f;      /* Azul institucional sóbrio */
-  --brand-navy-dark: #0f233a;
-  --brand-accent: #2563eb;
+  --brand-violet: var(--color-deep-violet);
+  --brand-violet-hover: #380F39;
+  --brand-accent: var(--color-lavender-tint);
 
   /* Cores de atribuição eleitoral (Sóbrias, sem excessos) */
   --lula-red: #991b1b;
@@ -37,9 +46,10 @@
   --flavio-badge: #14532d;
 
   /* Efeitos e espaçamentos */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.06);
-  --shadow-lg: 0 12px 28px -4px rgba(15, 23, 42, 0.08);
+  --shadow-sm: 0 1px 3px rgba(30, 26, 36, 0.04);
+  --shadow-md: 0 4px 14px -2px rgba(74, 21, 75, 0.06);
+  --shadow-lg: 0 12px 28px -4px rgba(74, 21, 75, 0.09);
+  --shadow-gold: 0 4px 16px rgba(255, 199, 44, 0.38);
 
   --radius-sm: 6px;
   --radius-md: 10px;
@@ -106,7 +116,7 @@ body {
 .brand-emblem {
   width: 38px;
   height: 38px;
-  background-color: var(--brand-navy);
+  background-color: var(--color-deep-violet);
   color: #ffffff;
   border-radius: var(--radius-sm);
   display: flex;
@@ -121,7 +131,7 @@ body {
   font-family: var(--font-serif);
   font-size: 17px;
   font-weight: 700;
-  color: var(--brand-navy-dark);
+  color: var(--color-deep-violet);
   line-height: 1.2;
 }
 
@@ -139,8 +149,8 @@ body {
 
 .badge-source {
   background: var(--bg-muted);
-  border: 1px solid var(--border-light);
-  color: var(--text-body);
+  border: 1px solid var(--border-medium);
+  color: var(--color-deep-violet);
   font-size: 12px;
   font-weight: 600;
   padding: 5px 12px;
@@ -154,7 +164,7 @@ body {
 .badge-source svg {
   width: 14px;
   height: 14px;
-  color: var(--brand-navy);
+  color: var(--color-deep-violet);
 }
 
 /* ==========================================================================
@@ -194,9 +204,9 @@ body {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: var(--brand-navy);
-  background: #eef4ff;
-  border: 1px solid #dbeafe;
+  color: var(--color-deep-violet);
+  background: #F1EBF9;
+  border: 1px solid #E2D7F3;
   padding: 4px 10px;
   border-radius: 4px;
   margin-bottom: 16px;
@@ -206,14 +216,14 @@ body {
   font-family: var(--font-serif);
   font-size: 32px;
   line-height: 1.25;
-  color: var(--text-main);
+  color: var(--color-deep-violet);
   font-weight: 700;
   margin-bottom: 18px;
 }
 
 .hero-lead {
   font-size: 17px;
-  color: var(--text-body);
+  color: var(--color-charcoal-purple);
   line-height: 1.6;
 }
 
@@ -236,7 +246,7 @@ body {
 .methodology-number {
   font-size: 13px;
   font-weight: 700;
-  color: var(--brand-navy);
+  color: var(--color-deep-violet);
   margin-bottom: 8px;
   display: block;
 }
@@ -254,13 +264,13 @@ body {
   line-height: 1.5;
 }
 
-/* Botões de Ação Principais */
+/* Botões de Ação Principais (Amber Gold #FFC72C para máxima atenção e contraste) */
 .btn-primary {
-  background: var(--brand-navy);
-  color: #ffffff;
+  background: var(--color-amber-gold);
+  color: var(--color-charcoal-purple);
   border: none;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 700;
   padding: 15px 34px;
   border-radius: var(--radius-md);
   cursor: pointer;
@@ -269,17 +279,19 @@ body {
   justify-content: center;
   gap: 10px;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 12px rgba(15, 35, 58, 0.2);
+  box-shadow: var(--shadow-gold);
   text-decoration: none;
 }
 
 .btn-primary:hover {
-  background: var(--brand-navy-dark);
+  background: var(--color-amber-gold-hover);
   transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(255, 199, 44, 0.45);
 }
 
 .btn-primary:disabled {
-  background: var(--border-medium);
+  background: #E8E2F0;
+  color: #9B91AB;
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
@@ -287,7 +299,7 @@ body {
 
 .btn-secondary {
   background: #ffffff;
-  color: var(--text-body);
+  color: var(--color-charcoal-purple);
   border: 1px solid var(--border-medium);
   font-size: 14px;
   font-weight: 600;
@@ -303,7 +315,7 @@ body {
 
 .btn-secondary:hover {
   background: var(--bg-muted);
-  border-color: var(--border-dark);
+  border-color: var(--color-lavender-tint);
 }
 
 .btn-secondary:disabled {
@@ -328,9 +340,9 @@ body {
 
 /* Aviso de Leitura Atenta na Tela Inicial */
 .attention-banner {
-  background: #f8fafc;
+  background: var(--bg-subtle);
   border: 1px solid var(--border-medium);
-  border-left: 4px solid var(--brand-navy);
+  border-left: 4px solid var(--color-deep-violet);
   border-radius: var(--radius-md);
   padding: 16px 20px;
   margin: 28px auto 32px;
@@ -342,7 +354,7 @@ body {
 }
 
 .attention-icon {
-  color: var(--brand-navy);
+  color: var(--color-deep-violet);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -381,7 +393,7 @@ body {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.8px;
-  color: var(--brand-navy);
+  color: var(--color-deep-violet);
 }
 
 .step-counter {
@@ -400,7 +412,7 @@ body {
 
 .progress-indicator {
   height: 100%;
-  background: var(--brand-navy);
+  background: var(--color-lavender-tint); /* Violeta Suave #A389D4: fluido e sem ansiedade */
   width: 14.28%;
   transition: width 0.3s ease;
 }
@@ -412,7 +424,7 @@ body {
 .question-title {
   font-family: var(--font-serif);
   font-size: 23px;
-  color: var(--text-main);
+  color: var(--color-deep-violet);
   line-height: 1.35;
   font-weight: 700;
   margin-bottom: 10px;
@@ -422,7 +434,7 @@ body {
   font-size: 14px;
   color: var(--text-muted);
   font-style: italic;
-  border-left: 3px solid var(--border-medium);
+  border-left: 3px solid var(--color-lavender-tint);
   padding-left: 12px;
   margin-bottom: 20px;
 }
@@ -449,16 +461,16 @@ body {
 }
 
 .option-card:hover {
-  border-color: var(--brand-navy);
-  background: #f8fafc;
+  border-color: var(--color-lavender-tint);
+  background: var(--bg-subtle);
   box-shadow: var(--shadow-sm);
 }
 
 .option-card.selected {
-  border-color: var(--brand-navy);
+  border-color: var(--color-deep-violet);
   border-width: 2px;
-  background: #f0f7ff;
-  padding: 17px 19px; /* Mantém alinhamento com borda de 2px */
+  background: #F5F0FA;
+  padding: 17px 19px;
 }
 
 .option-badge {
@@ -467,7 +479,7 @@ body {
   border-radius: 50%;
   border: 1px solid var(--border-medium);
   background: var(--bg-muted);
-  color: var(--text-main);
+  color: var(--color-deep-violet);
   font-weight: 700;
   font-size: 14px;
   display: flex;
@@ -479,13 +491,13 @@ body {
 }
 
 .option-card:hover .option-badge {
-  border-color: var(--brand-navy);
+  border-color: var(--color-lavender-tint);
 }
 
 .option-card.selected .option-badge {
-  background: var(--brand-navy);
+  background: var(--color-deep-violet);
   color: #ffffff;
-  border-color: var(--brand-navy);
+  border-color: var(--color-deep-violet);
 }
 
 .option-text {
@@ -516,7 +528,7 @@ body {
 .results-header h2 {
   font-family: var(--font-serif);
   font-size: 28px;
-  color: var(--text-main);
+  color: var(--color-deep-violet);
   margin-bottom: 10px;
 }
 
@@ -648,9 +660,9 @@ body {
 
 /* Síntese Editorial e Contraponto de País */
 .editorial-synthesis-block {
-  background: #fbfcfe;
+  background: var(--bg-subtle);
   border: 1px solid var(--border-light);
-  border-left: 4px solid var(--brand-navy);
+  border-left: 4px solid var(--color-deep-violet);
   border-radius: var(--radius-md);
   padding: 28px;
   margin-bottom: 36px;
@@ -664,7 +676,7 @@ body {
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
-  color: var(--brand-navy);
+  color: var(--color-deep-violet);
   letter-spacing: 0.8px;
   display: block;
   margin-bottom: 6px;
@@ -834,12 +846,12 @@ body {
 }
 
 .tab-btn:hover {
-  color: var(--text-main);
+  color: var(--color-deep-violet);
 }
 
 .tab-btn.active {
-  color: var(--brand-navy);
-  border-bottom-color: var(--brand-navy);
+  color: var(--color-deep-violet);
+  border-bottom-color: var(--color-deep-violet);
 }
 
 /* Itens de Gabarito Individual */
@@ -868,7 +880,7 @@ body {
 .audit-theme-tag {
   font-size: 12px;
   font-weight: 700;
-  color: var(--brand-navy);
+  color: var(--color-deep-violet);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -915,7 +927,7 @@ body {
 
 .audit-pages-tag {
   font-weight: 700;
-  color: var(--brand-navy);
+  color: var(--color-deep-violet);
 }
 
 /* Controles de Busca e Filtro do Explorador TSE */
@@ -939,8 +951,8 @@ body {
 }
 
 .explorer-search-input:focus {
-  border-color: var(--brand-navy);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  border-color: var(--color-deep-violet);
+  box-shadow: 0 0 0 3px rgba(163, 137, 212, 0.25);
 }
 
 .filter-pills {
@@ -963,13 +975,14 @@ body {
 
 .pill-btn:hover {
   background: var(--bg-muted);
-  color: var(--text-main);
+  color: var(--color-deep-violet);
+  border-color: var(--color-lavender-tint);
 }
 
 .pill-btn.active {
-  background: var(--brand-navy);
+  background: var(--color-deep-violet);
   color: #ffffff;
-  border-color: var(--brand-navy);
+  border-color: var(--color-deep-violet);
 }
 
 /* Toast de Notificação (ao copiar link) */
@@ -977,7 +990,7 @@ body {
   position: fixed;
   bottom: 24px;
   right: 24px;
-  background: var(--brand-navy-dark);
+  background: var(--color-deep-violet);
   color: #ffffff;
   padding: 12px 20px;
   border-radius: var(--radius-md);
@@ -1024,7 +1037,7 @@ body {
 }
 
 .footer-links a {
-  color: var(--brand-navy);
+  color: var(--color-deep-violet);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
