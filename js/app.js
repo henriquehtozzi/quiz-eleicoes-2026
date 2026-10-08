@@ -1,7 +1,7 @@
 /**
- * Decisão Brasil 2026 - Lógica da Aplicação
+ * Decisão Brasil - Lógica da Aplicação
  * Gerenciamento de fluxo, cálculo de afinidade, renderização editorial,
- * auditoria documental, busca no TSE e compartilhamento via Web Share e WhatsApp.
+ * auditoria documental, busca no TSE, compartilhamento e mensuração completa via GA4.
  */
 
 // Estado da Aplicação
@@ -10,8 +10,31 @@ const appState = {
   userAnswers: {}, // Mapeia { [themeId]: optionObject }
   activeAuditTab: 'user-choices',
   explorerFilter: 'all',
-  explorerSearchTerm: ''
+  explorerSearchTerm: '',
+  startTime: null,
+  lastResult: null
 };
+
+// Temporizador para debounce de buscas
+let searchDebounceTimer = null;
+
+/**
+ * Helper de envio de eventos para o Google Analytics 4 (GA4)
+ * Trata erros de forma silenciosa e garante que nada quebre a experiência do usuário.
+ */
+function trackEvent(eventName, params = {}) {
+  try {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', eventName, params);
+    }
+    // Log transparente no console para auditoria e conferência
+    if (!window.GA_MEASUREMENT_ID || window.GA_MEASUREMENT_ID === 'G-SEU_ID_AQUI') {
+      console.log(`📊 [GA4 Event] "${eventName}":`, params);
+    }
+  } catch (err) {
+    console.warn('[GA4 Tracking Warning]', err);
+  }
+}
 
 // Inicialização após carregamento do DOM
 document.addEventListener('DOMContentLoaded', () => {
@@ -32,6 +55,15 @@ function initApp() {
 function startQuiz() {
   appState.currentStep = 0;
   appState.userAnswers = {};
+  appState.startTime = Date.now();
+
+  // Rastreamento GA4: Início do Quiz
+  trackEvent('quiz_start', {
+    event_category: 'Quiz',
+    event_label: 'Descobrir Meu Posicionamento',
+    timestamp: new Date().toISOString()
+  });
+
   showScreen('screenQuiz');
   renderStep(appState.currentStep);
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -55,6 +87,16 @@ function renderStep(stepIndex) {
 
   const totalSteps = quizThemes.length;
   const progressPercent = Math.round(((stepIndex + 1) / totalSteps) * 100);
+
+  // Rastreamento GA4: Visualização do Passo
+  trackEvent('quiz_step_view', {
+    step_number: stepIndex + 1,
+    total_steps: totalSteps,
+    theme_id: theme.id,
+    theme_title: theme.title,
+    theme_tag: theme.tag,
+    progress_percent: progressPercent
+  });
 
   // Atualiza indicadores de progresso
   const stepCounterEl = document.getElementById('stepCounter');
@@ -121,13 +163,36 @@ function renderStep(stepIndex) {
 // Selecionar Opção
 function selectOption(themeId, option) {
   appState.userAnswers[themeId] = option;
+
+  // Rastreamento GA4: Opção Selecionada com metadados ricos
+  trackEvent('quiz_option_selected', {
+    step_number: appState.currentStep + 1,
+    theme_id: themeId,
+    theme_title: quizThemes[appState.currentStep]?.title || '',
+    option_letter: option.letter,
+    candidate: option.candidate,
+    party: option.party,
+    coalition: option.coalition || option.party,
+    pages_cited: option.pages
+  });
+
   renderStep(appState.currentStep);
 }
 
 // Navegação Próximo
 function nextStep() {
   const theme = quizThemes[appState.currentStep];
-  if (!appState.userAnswers[theme.id]) return;
+  const choice = appState.userAnswers[theme.id];
+  if (!choice) return;
+
+  // Rastreamento GA4: Avanço de Etapa
+  trackEvent('quiz_step_next', {
+    step_number: appState.currentStep + 1,
+    theme_id: theme.id,
+    chosen_candidate: choice.candidate,
+    chosen_party: choice.party,
+    is_final_step: (appState.currentStep === quizThemes.length - 1)
+  });
 
   if (appState.currentStep < quizThemes.length - 1) {
     appState.currentStep++;
@@ -141,6 +206,12 @@ function nextStep() {
 // Navegação Anterior
 function prevStep() {
   if (appState.currentStep > 0) {
+    // Rastreamento GA4: Retorno à etapa anterior
+    trackEvent('quiz_step_prev', {
+      from_step: appState.currentStep + 1,
+      to_step: appState.currentStep
+    });
+
     appState.currentStep--;
     renderStep(appState.currentStep);
     window.scrollTo({ top: 120, behavior: 'smooth' });
@@ -166,6 +237,51 @@ function finishQuiz() {
 
   const lulaPercent = Math.round((lulaCount / total) * 100);
   const flavioPercent = 100 - lulaPercent;
+  const durationSeconds = appState.startTime ? Math.round((Date.now() - appState.startTime) / 1000) : 0;
+
+  // Classificação qualitativa da afinidade
+  let alignmentBracket = '';
+  if (lulaPercent === 100) alignmentBracket = 'Lula 100%';
+  else if (lulaPercent >= 70) alignmentBracket = 'Lula Amplo (70-99%)';
+  else if (lulaPercent >= 50) alignmentBracket = 'Lula Moderado (50-69%)';
+  else if (lulaPercent >= 30) alignmentBracket = 'Flávio Moderado (50-70%)';
+  else if (lulaPercent > 0) alignmentBracket = 'Flávio Amplo (71-99%)';
+  else alignmentBracket = 'Flávio 100%';
+
+  // Resumo compacto de todas as 7 escolhas (ex: "1:PT|2:PL|3:PT|4:PT|5:PL|6:PT|7:PT")
+  const answersCompact = quizThemes.map(t => {
+    const a = appState.userAnswers[t.id];
+    return `${t.id}:${a ? a.party : '-'}`;
+  }).join('|');
+
+  // Rastreamento GA4: Conclusão Geral e Métricas de Afinidade
+  trackEvent('quiz_completed', {
+    lula_percent: lulaPercent,
+    flavio_percent: flavioPercent,
+    lula_count: lulaCount,
+    flavio_count: flavioCount,
+    total_questions: total,
+    winner_candidate: lulaPercent >= flavioPercent ? 'Luiz Inácio Lula da Silva' : 'Flávio Bolsonaro',
+    winner_party: lulaPercent >= flavioPercent ? 'PT' : 'PL',
+    alignment_bracket: alignmentBracket,
+    duration_seconds: durationSeconds,
+    answers_summary: answersCompact
+  });
+
+  // Evento padrão de conversão do GA4
+  trackEvent('generate_lead', {
+    currency: 'BRL',
+    value: lulaPercent
+  });
+
+  appState.lastResult = {
+    lulaPercent,
+    flavioPercent,
+    lulaCount,
+    flavioCount,
+    alignmentBracket,
+    durationSeconds
+  };
 
   renderResults(lulaPercent, flavioPercent, lulaCount, flavioCount, total);
   showScreen('screenResults');
@@ -263,12 +379,27 @@ function setupShareButtons(lulaPercent, flavioPercent) {
   const whatsappBtn = document.getElementById('btnShareWhatsapp');
   if (whatsappBtn) {
     whatsappBtn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
+    whatsappBtn.onclick = () => {
+      trackEvent('quiz_share', {
+        method: 'whatsapp',
+        lula_percent: lulaPercent,
+        flavio_percent: flavioPercent,
+        winner: lulaPercent >= 50 ? 'Lula' : 'Flávio'
+      });
+    };
   }
 
   // Compartilhamento Nativo no Celular (Web Share API - iOS / Android)
   const nativeShareBtn = document.getElementById('btnNativeShare');
   if (nativeShareBtn) {
     nativeShareBtn.onclick = () => {
+      trackEvent('quiz_share', {
+        method: 'native_share',
+        lula_percent: lulaPercent,
+        flavio_percent: flavioPercent,
+        winner: lulaPercent >= 50 ? 'Lula' : 'Flávio'
+      });
+
       if (navigator.share) {
         navigator.share({
           title: 'Decisão Brasil — Alinhamento Eleitoral',
@@ -288,6 +419,13 @@ function setupShareButtons(lulaPercent, flavioPercent) {
   const copyBtn = document.getElementById('btnCopyLink');
   if (copyBtn) {
     copyBtn.onclick = () => {
+      trackEvent('quiz_share', {
+        method: 'copy_link',
+        lula_percent: lulaPercent,
+        flavio_percent: flavioPercent,
+        winner: lulaPercent >= 50 ? 'Lula' : 'Flávio'
+      });
+
       navigator.clipboard.writeText(currentUrl).then(() => {
         showToast('Link do Quiz copiado com sucesso!');
       }).catch(() => {
@@ -299,7 +437,13 @@ function setupShareButtons(lulaPercent, flavioPercent) {
   // Reiniciar quiz
   const restartBtn = document.getElementById('btnRestartQuiz');
   if (restartBtn) {
-    restartBtn.onclick = startQuiz;
+    restartBtn.onclick = () => {
+      trackEvent('quiz_restart', {
+        previous_lula_percent: lulaPercent,
+        previous_flavio_percent: flavioPercent
+      });
+      startQuiz();
+    };
   }
 }
 
@@ -423,6 +567,12 @@ function renderTSEExplorer() {
 function switchAuditTab(tabId) {
   appState.activeAuditTab = tabId;
 
+  // Rastreamento GA4: Alternância de abas na auditoria
+  trackEvent('quiz_tab_change', {
+    tab_id: tabId,
+    tab_name: (tabId === 'user-choices') ? 'Minhas 7 Escolhas & Atribuição' : 'Explorador Completo TSE'
+  });
+
   const btnUser = document.getElementById('tabBtnUser');
   const btnAll = document.getElementById('tabBtnAll');
   const panelUser = document.getElementById('tabPanelUser');
@@ -445,15 +595,33 @@ function switchAuditTab(tabId) {
 // Filtro por Candidato no Explorador TSE
 function setExplorerFilter(filterType, btnEl) {
   appState.explorerFilter = filterType;
+
+  // Rastreamento GA4: Filtro por candidato
+  trackEvent('tse_explorer_filter', {
+    filter_candidate: filterType
+  });
+
   document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
   btnEl.classList.add('active');
   renderTSEExplorer();
 }
 
-// Busca em Tempo Real no Explorador TSE
+// Busca em Tempo Real no Explorador TSE com Debounce
 function handleExplorerSearch(inputEl) {
   appState.explorerSearchTerm = inputEl.value;
   renderTSEExplorer();
+
+  // Rastreamento GA4 com debounce de 750ms para buscas relevantes
+  clearTimeout(searchDebounceTimer);
+  searchDebounceTimer = setTimeout(() => {
+    const term = inputEl.value.trim();
+    if (term.length >= 2) {
+      trackEvent('tse_explorer_search', {
+        search_term: term,
+        active_filter: appState.explorerFilter
+      });
+    }
+  }, 750);
 }
 
 // Toast de Notificação
