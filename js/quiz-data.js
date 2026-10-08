@@ -47,12 +47,12 @@ const quizThemes = [
       {
         id: "1D",
         letter: "D",
-        text: "Diminuir o tamanho do governo cortando pelo menos dez ministérios e gastando bem menos dinheiro público com a máquina do Estado.",
+        text: "Diminuir o tamanho do governo cortando pelo menos dez ministérios e gastando bem menos dinheiro público com a infraestrutura e os funcionários que compõem a administração pública de serviços básicos para o país (segurança, saúde, educação, justiça, entre outros).",
         candidate: "Flávio Bolsonaro",
         coalition: "PL",
         party: "PL",
         pages: "Páginas 7, 10 e 14",
-        tseSummary: "Extinção de pelo menos dez ministérios estratégicos, teto orçamentário rígido e desmonte da capacidade operativa de políticas públicas."
+        tseSummary: "Extinção de pelo menos dez ministérios estratégicos, teto orçamentário rígido e redução de gastos com o funcionalismo e a infraestrutura dos serviços públicos básicos."
       }
     ]
   },
@@ -311,12 +311,12 @@ const quizThemes = [
       {
         id: "7A",
         letter: "A",
-        text: "Conversar e negociar com o Congresso de forma transparente para decidir onde investir o dinheiro público, respeitando a autonomia dos juízes e da Justiça sem qualquer tipo de interferência do governo.",
-        candidate: "Luiz Inácio Lula da Silva",
-        coalition: "PT / Coligação Brasil da Esperança",
-        party: "PT",
-        pages: "Páginas 8, 21 e 82",
-        tseSummary: "Diálogo institucional republicano, transparência no orçamento público e preservação estrita da harmonia e independência dos poderes."
+        text: "Fazer uma reforma para acabar com a reeleição de presidente, governadores e prefeitos, além de mudar as leis no Congresso para punir abusos de autoridade no sistema de Justiça.",
+        candidate: "Flávio Bolsonaro",
+        coalition: "PL",
+        party: "PL",
+        pages: "Páginas 40, 42 e 45",
+        tseSummary: "Proposta de emenda constitucional para extinguir a reeleição no Executivo e ampliação de sanções da Lei de Abuso de Autoridade contra membros do Judiciário e MP."
       },
       {
         id: "7B",
@@ -341,12 +341,12 @@ const quizThemes = [
       {
         id: "7D",
         letter: "D",
-        text: "Fazer uma reforma para acabar com a reeleição de presidente, governadores e prefeitos, além de mudar as leis no Congresso para punir abusos de autoridade no sistema de Justiça.",
-        candidate: "Flávio Bolsonaro",
-        coalition: "PL",
-        party: "PL",
-        pages: "Páginas 40, 42 e 45",
-        tseSummary: "Proposta de emenda constitucional para extinguir a reeleição no Executivo e ampliação de sanções da Lei de Abuso de Autoridade contra membros do Judiciário e MP."
+        text: "Conversar e negociar com o Congresso de forma transparente para decidir onde investir o dinheiro público, respeitando a autonomia dos juízes e da Justiça sem qualquer tipo de interferência do governo.",
+        candidate: "Luiz Inácio Lula da Silva",
+        coalition: "PT / Coligação Brasil da Esperança",
+        party: "PT",
+        pages: "Páginas 8, 21 e 82",
+        tseSummary: "Diálogo institucional republicano, transparência no orçamento público e preservação estrita da harmonia e independência dos poderes."
       }
     ]
   }

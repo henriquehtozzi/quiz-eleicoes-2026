@@ -254,9 +254,9 @@ function setupShareButtons(lulaPercent, flavioPercent) {
   
   let shareText = '';
   if (lulaPercent >= 50) {
-    shareText = `Fiz o Teste Cego de Prioridades Eleitorais 2026 baseado nos planos oficiais do TSE e meu alinhamento deu ${lulaPercent}% com Lula! Compare suas prioridades sem rótulos partidários: ${currentUrl}`;
+    shareText = `Fiz o Teste Cego de Prioridades Eleitorais baseado nos planos oficiais do TSE e meu alinhamento deu ${lulaPercent}% com Lula! Compare suas prioridades sem rótulos partidários: ${currentUrl}`;
   } else {
-    shareText = `Fiz o Teste Cego de Prioridades Eleitorais 2026 baseado nos dados oficiais do TSE. Descubra com qual proposta de país suas escolhas reais se alinham: ${currentUrl}`;
+    shareText = `Fiz o Teste Cego de Prioridades Eleitorais baseado nos dados oficiais do TSE. Descubra com qual proposta de país suas escolhas reais se alinham: ${currentUrl}`;
   }
 
   // Compartilhamento direto no WhatsApp
@@ -271,7 +271,7 @@ function setupShareButtons(lulaPercent, flavioPercent) {
     nativeShareBtn.onclick = () => {
       if (navigator.share) {
         navigator.share({
-          title: 'Decisão Brasil 2026 — Alinhamento Eleitoral',
+          title: 'Decisão Brasil — Alinhamento Eleitoral',
           text: shareText,
           url: currentUrl
         }).catch(() => {});

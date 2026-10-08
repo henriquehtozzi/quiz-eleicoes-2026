@@ -326,6 +326,40 @@ body {
   gap: 6px;
 }
 
+/* Aviso de Leitura Atenta na Tela Inicial */
+.attention-banner {
+  background: #f8fafc;
+  border: 1px solid var(--border-medium);
+  border-left: 4px solid var(--brand-navy);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin: 28px auto 32px;
+  max-width: 720px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-align: left;
+}
+
+.attention-icon {
+  color: var(--brand-navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.attention-text {
+  font-size: 14px;
+  color: var(--text-body);
+  line-height: 1.55;
+}
+
+.attention-text strong {
+  color: var(--text-main);
+  font-weight: 700;
+}
+
 /* ==========================================================================
    TELA DO QUIZ: PASSO A PASSO
    ========================================================================== */
