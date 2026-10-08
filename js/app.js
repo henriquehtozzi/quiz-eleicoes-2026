@@ -27,8 +27,8 @@ function trackEvent(eventName, params = {}) {
     if (typeof window.gtag === 'function') {
       window.gtag('event', eventName, params);
     }
-    // Log transparente no console para auditoria e conferência
-    if (!window.GA_MEASUREMENT_ID || window.GA_MEASUREMENT_ID === 'G-SEU_ID_AQUI') {
+    // Log transparente no console para auditoria em ambiente local ou via ?debug=1
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.search.includes('debug=1')) {
       console.log(`📊 [GA4 Event] "${eventName}":`, params);
     }
   } catch (err) {
