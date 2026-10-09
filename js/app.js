@@ -184,16 +184,34 @@ function selectOption(themeId, option) {
   appState.userAnswers[themeId] = option;
 
   // Rastreamento GA4: Opção Selecionada com metadados ricos
+  const themeTitle = quizThemes[appState.currentStep]?.title || '';
   trackEvent('quiz_option_selected', {
+    event_category: 'Escolha de Proposta',
+    event_label: `${option.candidate} (${option.party}) - Dilema ${appState.currentStep + 1}: ${themeTitle}`,
     step_number: appState.currentStep + 1,
     theme_id: themeId,
-    theme_title: quizThemes[appState.currentStep]?.title || '',
+    theme_title: themeTitle,
     option_letter: option.letter,
     candidate: option.candidate,
     party: option.party,
     coalition: option.coalition || option.party,
     pages_cited: option.pages
   });
+
+  // Evento direto por partido escolhido na pergunta
+  if (option.party === 'PT') {
+    trackEvent('vote_option_lula', {
+      theme_id: themeId,
+      theme_title: themeTitle,
+      step_number: appState.currentStep + 1
+    });
+  } else if (option.party === 'PL') {
+    trackEvent('vote_option_flavio', {
+      theme_id: themeId,
+      theme_title: themeTitle,
+      step_number: appState.currentStep + 1
+    });
+  }
 
   renderStep(appState.currentStep);
 }
@@ -273,24 +291,53 @@ function finishQuiz() {
     return `${t.id}:${a ? a.party : '-'}`;
   }).join('|');
 
+  const winnerCandidate = lulaPercent >= flavioPercent ? 'Luiz Inácio Lula da Silva' : 'Flávio Bolsonaro';
+  const winnerParty = lulaPercent >= flavioPercent ? 'PT' : 'PL';
+  const primaryResultLabel = `${winnerCandidate} (${lulaPercent}% Lula / ${flavioPercent}% Flávio) - ${alignmentBracket}`;
+
   // Rastreamento GA4: Conclusão Geral e Métricas de Afinidade
   trackEvent('quiz_completed', {
+    event_category: 'Resultado do Quiz',
+    event_label: primaryResultLabel,
+    value: lulaPercent,
+    winner_candidate: winnerCandidate,
+    winner_party: winnerParty,
+    alignment_bracket: alignmentBracket,
     lula_percent: lulaPercent,
     flavio_percent: flavioPercent,
     lula_count: lulaCount,
     flavio_count: flavioCount,
     total_questions: total,
-    winner_candidate: lulaPercent >= flavioPercent ? 'Luiz Inácio Lula da Silva' : 'Flávio Bolsonaro',
-    winner_party: lulaPercent >= flavioPercent ? 'PT' : 'PL',
-    alignment_bracket: alignmentBracket,
     duration_seconds: durationSeconds,
     answers_summary: answersCompact
   });
 
+  // Eventos diretos por vencedor para visualização imediata no painel padrão do GA4
+  if (lulaPercent >= flavioPercent) {
+    trackEvent('result_winner_lula', {
+      event_category: 'Alinhamento Político',
+      event_label: `${alignmentBracket} (${lulaPercent}%)`,
+      value: lulaPercent,
+      lula_percent: lulaPercent,
+      flavio_percent: flavioPercent,
+      alignment_bracket: alignmentBracket
+    });
+  } else {
+    trackEvent('result_winner_flavio', {
+      event_category: 'Alinhamento Político',
+      event_label: `${alignmentBracket} (${flavioPercent}%)`,
+      value: flavioPercent,
+      lula_percent: lulaPercent,
+      flavio_percent: flavioPercent,
+      alignment_bracket: alignmentBracket
+    });
+  }
+
   // Evento padrão de conversão do GA4
   trackEvent('generate_lead', {
     currency: 'BRL',
-    value: lulaPercent
+    value: lulaPercent,
+    candidate_aligned: winnerCandidate
   });
 
   appState.lastResult = {
