@@ -209,8 +209,66 @@
         </div>
       </div>
 
-      <!-- Síntese Editorial e Contraponto dos Modelos de País -->
-      <div class="editorial-synthesis-block">
+      <!-- Barra de Navegação Rápida entre Seções do Resultado -->
+      <nav class="result-navigation-pills" aria-label="Navegação da tela de resultados">
+        <a href="#auditSection" class="result-pill-link active">
+          <span>📋</span> Ver Gabarito das 7 Escolhas
+        </a>
+        <a href="#editorialBlock" class="result-pill-link">
+          <span>⚖️</span> Análise dos Projetos de País
+        </a>
+        <a href="#shareBar" class="result-pill-link">
+          <span>📤</span> Compartilhar Resultado
+        </a>
+      </nav>
+
+      <!-- 1. AUDITORIA DOCUMENTAL E GABARITO TSE (Posicionado no topo, logo após o placar) -->
+      <div id="auditSection" class="audit-section">
+        <div class="audit-section-header">
+          <div>
+            <span class="audit-section-kicker">Comprovação Oficial TSE</span>
+            <h3>Gabarito das Suas 7 Escolhas & Auditoria Documental</h3>
+            <p>Confira a autoria oficial de cada proposta que você escolheu no teste cego e o número da página no documento protocolado no Tribunal Superior Eleitoral:</p>
+          </div>
+        </div>
+
+        <!-- Abas de Navegação -->
+        <div class="audit-tabs" role="tablist">
+          <button id="tabBtnUser" class="tab-btn active" type="button" role="tab" onclick="switchAuditTab('user-choices')">
+            📋 Minhas 7 Escolhas & Atribuição
+          </button>
+          <button id="tabBtnAll" class="tab-btn" type="button" role="tab" onclick="switchAuditTab('all-tse')">
+            🔎 Explorador Completo (Todas as 28 Propostas)
+          </button>
+        </div>
+
+        <!-- Painel 1: As 7 escolhas do eleitor -->
+        <div id="tabPanelUser" role="tabpanel">
+          <div id="userAuditList" class="audit-list"></div>
+        </div>
+
+        <!-- Painel 2: Busca e índice de todas as 28 propostas oficiais -->
+        <div id="tabPanelAll" role="tabpanel" style="display: none;">
+          <div class="explorer-controls">
+            <input 
+              type="text" 
+              class="explorer-search-input" 
+              placeholder="Pesquisar por tema, palavra-chave ou citação (ex: SUS, impostos, salário, presídios)..."
+              oninput="handleExplorerSearch(this)"
+              aria-label="Buscar no índice de propostas do TSE"
+            >
+            <div class="filter-pills">
+              <button class="pill-btn active" type="button" onclick="setExplorerFilter('all', this)">Todas as Propostas</button>
+              <button class="pill-btn" type="button" onclick="setExplorerFilter('Lula', this)">Apenas Lula (PT)</button>
+              <button class="pill-btn" type="button" onclick="setExplorerFilter('Flávio', this)">Apenas Flávio (PL)</button>
+            </div>
+          </div>
+          <div id="tseAllList" class="audit-list"></div>
+        </div>
+      </div>
+
+      <!-- 2. SÍNTESE EDITORIAL E CONTRAPONTO DOS MODELOS DE PAÍS -->
+      <div id="editorialBlock" class="editorial-synthesis-block">
         <div class="synthesis-header">
           <span class="synthesis-tag">Análise Comparativa de Impactos</span>
           <h3>O Que Suas Escolhas Revelam: Dois Projetos de País em Disputa</h3>
@@ -220,8 +278,8 @@
         </div>
       </div>
 
-      <!-- Barra de Compartilhamento -->
-      <div class="share-action-bar">
+      <!-- 3. BARRA DE COMPARTILHAMENTO E REINÍCIO -->
+      <div id="shareBar" class="share-action-bar">
         <h4>Ajude a disseminar informação eleitoral de qualidade</h4>
         <p>Compartilhe o teste cego com seus amigos e familiares antes de decidir o voto:</p>
         <div class="share-buttons-group">
@@ -258,50 +316,6 @@
             </svg>
             <span>Refazer o Teste</span>
           </button>
-        </div>
-      </div>
-
-      <!-- AUDITORIA DOCUMENTAL E EXPLORADOR TSE -->
-      <div class="audit-section">
-        <div class="audit-section-header">
-          <div>
-            <h3>Auditoria Documental & Gabarito TSE</h3>
-            <p>Consulte a comprovação das propostas e as páginas das diretrizes oficiais registradas na Justiça Eleitoral.</p>
-          </div>
-        </div>
-
-        <!-- Abas de Navegação -->
-        <div class="audit-tabs" role="tablist">
-          <button id="tabBtnUser" class="tab-btn active" type="button" role="tab" onclick="switchAuditTab('user-choices')">
-            Minhas 7 Escolhas & Atribuição
-          </button>
-          <button id="tabBtnAll" class="tab-btn" type="button" role="tab" onclick="switchAuditTab('all-tse')">
-            Explorador Completo (Todas as 28 Propostas)
-          </button>
-        </div>
-
-        <!-- Painel 1: As 7 escolhas do eleitor -->
-        <div id="tabPanelUser" role="tabpanel">
-          <div id="userAuditList" class="audit-list"></div>
-        </div>
-
-        <!-- Painel 2: Busca e índice de todas as 28 propostas oficiais -->
-        <div id="tabPanelAll" role="tabpanel" style="display: none;">
-          <div class="explorer-controls">
-            <input 
-              type="text" 
-              class="explorer-search-input" 
-              placeholder="Pesquisar por tema, palavra-chave ou citação (ex: SUS, impostos, salário, presídios)..."
-              oninput="handleExplorerSearch(this)"
-              aria-label="Buscar no índice de propostas do TSE"
-            >
-            <div class="filter-pills">
-              <button class="pill-btn active" type="button" onclick="setExplorerFilter('all', this)">Todas as Propostas</button>
-              <button class="pill-btn" type="button" onclick="setExplorerFilter('Lula', this)">Apenas Lula (PT)</button>
-              <button class="pill-btn" type="button" onclick="setExplorerFilter('Flávio', this)">Apenas Flávio (PL)</button>
-            </div>
-          </div>
-          <div id="tseAllList" class="audit-list"></div>
         </div>
       </div>
     </section>

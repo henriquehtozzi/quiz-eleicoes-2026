@@ -49,6 +49,25 @@ function initApp() {
 
   // Atalhos de teclado acessíveis (1-4 ou A-D para responder, Enter para avançar)
   document.addEventListener('keydown', handleKeyboardShortcuts);
+
+  // Inicializa atalhos de navegação do resultado
+  setupResultNavigationPills();
+}
+
+// Configuração das Pills de Navegação Rápida do Resultado
+function setupResultNavigationPills() {
+  const pills = document.querySelectorAll('.result-pill-link');
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      const targetId = pill.getAttribute('href');
+      trackEvent('quiz_result_section_click', {
+        section_target: targetId,
+        section_label: pill.textContent.trim()
+      });
+    });
+  });
 }
 
 // Iniciar o Quiz
