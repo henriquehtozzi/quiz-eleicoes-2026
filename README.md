@@ -10,7 +10,7 @@ Aplicação web interativa, responsiva e de alta performance projetada para publ
 2. **Rigor e Checagem Documental**: Todas as 28 propostas (14 de Luiz Inácio Lula da Silva / PT e 14 de Flávio Bolsonaro / PL) contam com citação direta de capítulos e páginas dos documentos protocolados no TSE.
 3. **Contraponto Editorial Sóbrio**: Ao final, o eleitor visualiza sua afinidade percentual e um contraponto analítico aprofundado evidenciando o modelo de reconstrução social, fortalecimento dos serviços públicos e soberania de Lula em contraste com a desregulamentação, privatizações e desmonte social da direita.
 4. **Transparência e Auditoria**: Aba com o gabarito das respostas do próprio eleitor e um explorador com mecanismo de busca em tempo real em todas as diretrizes oficiais.
-5. **Mobilização Cívica**: Botão otimizado de compartilhamento instantâneo via WhatsApp para viralização em redes e grupos familiares.
+5. **Mobilização Cívica & Redes Sociais**: Botão otimizado de compartilhamento instantâneo via WhatsApp e integração direta com o perfil oficial no Instagram [**@quizdoalinhamento**](https://www.instagram.com/quizdoalinhamento).
 
 ---
 

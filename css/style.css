@@ -167,6 +167,43 @@ body {
   color: var(--color-deep-violet);
 }
 
+.badge-instagram {
+  background: linear-gradient(135deg, #FAF5FF 0%, #FFF4F8 100%);
+  border: 1px solid #E9D5FF;
+  color: #C13584;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.badge-instagram svg {
+  width: 14px;
+  height: 14px;
+  color: #E1306C;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.badge-instagram:hover {
+  background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+  color: #ffffff;
+  border-color: transparent;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(225, 48, 108, 0.25);
+}
+
+.badge-instagram:hover svg {
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
 /* ==========================================================================
    CONTAINER PRINCIPAL
    ========================================================================== */
@@ -370,6 +407,104 @@ body {
 .attention-text strong {
   color: var(--text-main);
   font-weight: 700;
+}
+
+/* Card de Chamada para o Instagram Oficial */
+.instagram-welcome-banner {
+  background: linear-gradient(135deg, #ffffff 0%, #FAF6FE 50%, #FFF4F7 100%);
+  border: 1px solid #EADFF7;
+  border-left: 4px solid #C13584;
+  border-radius: var(--radius-md);
+  padding: 18px 22px;
+  margin: 22px auto 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s ease;
+}
+
+.instagram-welcome-banner:hover {
+  box-shadow: var(--shadow-md);
+  border-color: #D8B4FE;
+  transform: translateY(-1px);
+}
+
+.instagram-banner-content {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-align: left;
+}
+
+.instagram-icon-wrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(220, 39, 67, 0.25);
+}
+
+.instagram-icon-wrapper svg {
+  width: 22px;
+  height: 22px;
+}
+
+.instagram-banner-texts {
+  display: flex;
+  flex-direction: column;
+}
+
+.instagram-banner-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #C13584;
+  margin-bottom: 2px;
+}
+
+.instagram-banner-heading {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-deep-violet);
+  margin-bottom: 3px;
+  line-height: 1.25;
+}
+
+.instagram-banner-desc {
+  font-size: 13px;
+  color: var(--text-body);
+  line-height: 1.45;
+}
+
+.btn-instagram-welcome {
+  background: linear-gradient(45deg, #f09433 0%, #dc2743 50%, #bc1888 100%);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 11px 18px;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: 0 3px 12px rgba(220, 39, 67, 0.28);
+  transition: all 0.2s ease;
+}
+
+.btn-instagram-welcome:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(220, 39, 67, 0.4);
+  color: #ffffff;
 }
 
 /* ==========================================================================
@@ -840,6 +975,30 @@ body {
   transform: translateY(-1px);
 }
 
+.btn-instagram {
+  background: linear-gradient(45deg, #f09433 0%, #dc2743 50%, #bc1888 100%);
+  color: #ffffff;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 22px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 3px 12px rgba(220, 39, 67, 0.28);
+}
+
+.btn-instagram:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(220, 39, 67, 0.4);
+  color: #ffffff;
+}
+
 /* ==========================================================================
    GABARITO AUDITÁVEL & EXPLORADOR TSE
    ========================================================================== */
@@ -1098,6 +1257,24 @@ body {
   text-underline-offset: 3px;
 }
 
+.footer-instagram-link {
+  color: #C13584 !important;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none !important;
+  transition: color 0.2s ease;
+}
+
+.footer-instagram-link:hover {
+  color: #dc2743 !important;
+  text-decoration: underline !important;
+}
+
+.footer-instagram-link svg {
+  color: #E1306C;
+}
+
 /* ==========================================================================
    RESPONSIVIDADE (DISPOSITIVOS MÓVEIS & TABLETS)
    ========================================================================== */
@@ -1130,7 +1307,34 @@ body {
   }
 
   .masthead-meta {
+    display: flex;
+    align-items: center;
+  }
+
+  .masthead-meta .badge-source {
     display: none;
+  }
+
+  .badge-instagram {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+
+  .instagram-welcome-banner {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 18px 16px;
+    gap: 16px;
+  }
+
+  .instagram-banner-content {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .btn-instagram-welcome {
+    width: 100%;
+    justify-content: center;
   }
 
   .quiz-footer-actions {

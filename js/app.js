@@ -52,6 +52,25 @@ function initApp() {
 
   // Inicializa atalhos de navegação do resultado
   setupResultNavigationPills();
+
+  // Rastreamento de cliques no Instagram oficial
+  setupInstagramTracking();
+}
+
+// Rastreamento unificado de cliques para o perfil do Instagram
+function setupInstagramTracking() {
+  const instagramLinks = document.querySelectorAll('a[href*="instagram.com/quizdoalinhamento"]');
+  instagramLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      const source = link.getAttribute('data-source') || 'generic_link';
+      trackEvent('instagram_visit', {
+        platform: 'instagram',
+        account: '@quizdoalinhamento',
+        source: source,
+        url: link.href
+      });
+    });
+  });
 }
 
 // Configuração das Pills de Navegação Rápida do Resultado
@@ -436,9 +455,9 @@ function setupShareButtons(lulaPercent, flavioPercent) {
   
   let shareText = '';
   if (lulaPercent >= 50) {
-    shareText = `Fiz o Teste Cego de Prioridades Eleitorais baseado nos planos oficiais do TSE e meu alinhamento deu ${lulaPercent}% com Lula! Compare suas prioridades sem rótulos partidários: ${currentUrl}`;
+    shareText = `Fiz o Teste Cego de Prioridades Eleitorais baseado nos planos oficiais do TSE e meu alinhamento deu ${lulaPercent}% com Lula! Compare suas prioridades sem rótulos partidários: ${currentUrl} \n\nSiga também no Instagram: https://www.instagram.com/quizdoalinhamento`;
   } else {
-    shareText = `Fiz o Teste Cego de Prioridades Eleitorais baseado nos dados oficiais do TSE. Descubra com qual proposta de país suas escolhas reais se alinham: ${currentUrl}`;
+    shareText = `Fiz o Teste Cego de Prioridades Eleitorais baseado nos dados oficiais do TSE. Descubra com qual proposta de país suas escolhas reais se alinham: ${currentUrl} \n\nSiga também no Instagram: https://www.instagram.com/quizdoalinhamento`;
   }
 
   // Compartilhamento direto no WhatsApp
@@ -448,6 +467,19 @@ function setupShareButtons(lulaPercent, flavioPercent) {
     whatsappBtn.onclick = () => {
       trackEvent('quiz_share', {
         method: 'whatsapp',
+        lula_percent: lulaPercent,
+        flavio_percent: flavioPercent,
+        winner: lulaPercent >= 50 ? 'Lula' : 'Flávio'
+      });
+    };
+  }
+
+  // Botão Siga no Instagram (Tela de Resultados)
+  const followInstagramBtn = document.getElementById('btnFollowInstagram');
+  if (followInstagramBtn) {
+    followInstagramBtn.onclick = () => {
+      trackEvent('quiz_share', {
+        method: 'instagram_profile',
         lula_percent: lulaPercent,
         flavio_percent: flavioPercent,
         winner: lulaPercent >= 50 ? 'Lula' : 'Flávio'
